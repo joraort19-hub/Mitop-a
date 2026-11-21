@@ -1,26 +1,22 @@
-MITOPÍA · PAQUETE INSTALABLE (PWA)
-==================================
+MITOPÍA · PÁGINA WEB (sin servidor)
+===================================
 
-Contenido
-- index.html ......... el juego completo (un solo archivo)
-- manifest.json ...... nombre, colores e íconos de la app
-- sw.js .............. permite abrirla sin internet después de la primera visita
-- icon-192.png / icon-512.png ... íconos de la app
+Cómo abrirla
+  - En tu computadora: doble clic en index.html (se abre en tu navegador).
+  - En internet: sube TODOS los archivos de esta carpeta a tu hosting o dominio.
+    No necesita Python ni servidor especial: es una página web normal.
+    Si el sitio usa https, además se puede instalar como app (Ajustes → Instalar).
 
-Cómo publicarla en tu dominio
-1. Sube los 5 archivos juntos a una carpeta de tu servidor, por ejemplo:
-   https://tudominio.com/mitopia/
-2. El sitio DEBE abrirse con https:// (candado). Sin https el navegador no permite instalarla.
-3. Abre la dirección en el celular o la computadora:
-   - Android / Chrome / Edge: aparece «Instalar app» en el menú, o el botón
-     «Instalar Mitopía» en Ajustes dentro del juego.
-   - iPhone / iPad (Safari): botón Compartir → «Agregar a pantalla de inicio».
-4. Listo: queda con su ícono, a pantalla completa y funciona sin conexión.
+Cuentas
+  - Cada persona crea su cuenta con nombre de jugador y contraseña.
+  - Las cuentas y las partidas se guardan en el navegador de ESE dispositivo.
+    Las personas que usan el mismo dispositivo pueden visitarse, regalarse cosas e intercambiar.
+  - Para pasar una partida a otro dispositivo: Ajustes → Exportar / Importar respaldo.
+  - Si se borran los datos del navegador, se borran las cuentas de ese dispositivo.
 
-Notas
-- En esta versión instalable el progreso se guarda en el dispositivo.
-  Para moverlo a otro dispositivo usa Ajustes → Exportar / Importar respaldo.
-- Las funciones en la nube (vecinos, regalos, intercambios y clasificación general)
-  funcionan dentro de la versión publicada en Claude, donde existen las cuentas.
-- Si cambias index.html, sube también sw.js con un número nuevo en CACHE
-  (por ejemplo 'mitopia-v5') para que los dispositivos tomen la versión nueva.
+Centro de mando
+  - Solo entra el usuario administrador.
+  - Formas de llegar: en la pantalla de inicio de sesión escribe el usuario y la contraseña de
+    administración; o, ya dentro del juego, Ctrl + Alt + M (o 7 toques seguidos en las monedas)
+    abre la ventana «Acceso restringido».
+  - 5 intentos fallidos bloquean el acceso por 5 minutos.
