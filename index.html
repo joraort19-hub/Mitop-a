@@ -9,6 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Mitopía">
+<script>window.MITOPIA_API="/api"</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Mitopía · Mascotas míticas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -215,7 +216,7 @@ table.rk{width:100%;border-collapse:separate;border-spacing:0 4px}.rk th{text-al
 .pc-img{width:120px;height:90px;flex:none;border-radius:12px;background:#bfe9ff;border:3px solid var(--ink);object-fit:contain}.pc-img svg{width:100%;height:100%}
 .pc-in small{opacity:.7;font-size:12px}.pc-in b{display:block;font-family:Fredoka,sans-serif;font-size:21px;line-height:1.1}.pc-in span{display:block;font-size:13px;line-height:1.2}
 /* tutorial con Lumi */
-#tut{position:fixed;inset:0;z-index:45}
+#tut{position:fixed;inset:0;z-index:45}#tut.dim{background:rgba(20,10,40,.62)}
 #tutHole{position:fixed;border-radius:18px;box-shadow:0 0 0 9999px rgba(20,10,40,.62);border:3px dashed #ffe066;transition:all .35s;pointer-events:none}
 #tutBox{position:fixed;width:min(320px,calc(100vw - 24px));background:linear-gradient(180deg,var(--parch),var(--parch2));border:4px solid var(--wood2);border-radius:20px;box-shadow:0 6px 0 var(--ink);padding:14px 14px 10px 78px;transition:top .35s,left .35s;zoom:var(--tz)}
 #tutBox p{margin:0 0 8px}#tutBox small{opacity:.6}.tutlumi{position:absolute;left:8px;top:8px;width:64px;height:64px;animation:bob 1.6s ease-in-out infinite;}.tutlumi svg{width:100%;height:100%}
@@ -244,6 +245,38 @@ body.rm *{animation:none!important;transition:none!important}
 }
 @media (max-width:600px){#drawer{grid-template-columns:repeat(3,84px);right:-4px}#cloud{font-size:10px}#evb span{display:none}.stk{grid-template-columns:repeat(4,1fr)}.pc-img{width:90px;height:70px}}
 @media (max-width:820px){#menu{max-width:200px}}
+
+/* ===== v5: acceso, avisos y centro de mando ===== */
+#auth{position:fixed;inset:0;z-index:65;display:grid;place-items:center;padding:14px;overflow:auto;transition:opacity .45s}
+#auth.out{opacity:0;pointer-events:none}
+#auth .abg{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 115%,#ff9ec4,transparent 60%),radial-gradient(circle,rgba(255,255,255,.5) 1px,transparent 1.6px) 0 0/38px 38px,linear-gradient(180deg,#1d1856,#5a3ab0 62%,#ff8ac0)}
+.abox{position:relative;width:min(440px,100%);background:linear-gradient(180deg,var(--parch),var(--parch2));border:5px solid var(--wood2);border-radius:26px;box-shadow:0 0 0 3px #e0a86a inset,0 10px 0 var(--ink);padding:18px 22px 20px;display:flex;flex-direction:column;gap:8px;zoom:var(--tz);animation:pop .3s}
+.alogo{display:flex;align-items:center;justify-content:center;gap:8px;margin:-4px 0 2px}.alogo h1{margin:0;font-family:Fredoka,"Baloo 2",sans-serif;font-size:42px;color:var(--yel);-webkit-text-stroke:4px var(--ink);paint-order:stroke fill;text-shadow:0 4px 0 var(--ink)}
+.alumi{width:54px;height:54px;animation:bob 1.8s ease-in-out infinite}.alumi svg{width:100%;height:100%}
+.abox h2{margin:4px 0 0;text-align:center;font-size:24px}.asub{text-align:center;margin:0}
+.abox .txt{width:100%}.abox .txt[readonly]{background:#efe6d2;color:#5a4a3a}.txt.code{font-size:28px;letter-spacing:10px;text-align:center;font-weight:800}
+.lbl{font-weight:700;margin-top:4px}.chk{display:flex;gap:8px;align-items:flex-start;font-weight:600;line-height:1.25;cursor:pointer}.chk input{width:20px;height:20px;flex:none;margin-top:1px;accent-color:var(--pink)}
+.rules{background:#fffdf7;border:2px dashed var(--wood2);border-radius:12px;padding:6px 10px}.rules summary{cursor:pointer;font-weight:700}.rules ul{margin:6px 0 0;padding-left:20px}
+.amsg{min-height:20px;font-weight:700;font-size:14px}.amsg.err{color:#c2185b}.amsg.ok{color:#2f9a5a}
+.btn.link{background:none;border:none;box-shadow:none;text-decoration:underline;padding:2px;color:var(--wood2)}
+.acard{display:flex;flex-direction:column;align-items:center;background:#fffdf7;border:3px solid var(--ink);border-radius:16px;padding:10px;box-shadow:0 3px 0 var(--ink)}.acard b{font-size:22px;font-family:Fredoka,sans-serif}.acard span{opacity:.75;word-break:break-all}
+.aspin{width:46px;height:46px;margin:10px auto;border-radius:50%;border:6px solid #f6e2b8;border-top-color:var(--pink);animation:spin .9s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+#anuncio{position:fixed;top:max(8px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:8;display:flex;gap:10px;align-items:center;max-width:min(560px,92vw);background:linear-gradient(90deg,#fff1b8,#ffd6ea);border:3px solid var(--ink);border-radius:16px;padding:6px 8px 6px 14px;box-shadow:var(--sh);font-weight:700;zoom:var(--tz)}
+#anuncio button{background:#fff;border:2px solid var(--ink);border-radius:50%;width:28px;height:28px;font-weight:800;flex:none}
+.pbox.admin{background:linear-gradient(180deg,#24203a,#1a1730);color:#f2ecff;border-color:#0d0b1a;box-shadow:0 0 0 3px #5a4fb0 inset,0 8px 0 #000}
+.pbox.admin header{background:linear-gradient(180deg,#5a4fb0,#3a3080);border-bottom-color:#0d0b1a}.pbox.admin header h2{-webkit-text-stroke:0;text-shadow:0 2px 0 #0d0b1a}
+.pbox.admin .note,.pbox.admin small{color:#c9c2e8;opacity:1}.pbox.admin .tabs button{background:#2e2950;color:#f2ecff;border-color:#0d0b1a}.pbox.admin .tabs button.on{background:#ffcf3f;color:#2d1b3d}
+.pbox.admin .txt{background:#120f24;color:#fff;border-color:#5a4fb0}.pbox.admin .rk td{background:#2a2548;color:#fff;border-color:#0d0b1a}.pbox.admin h4{color:#ffcf3f}
+.admbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}.admtag{background:#ff3d6e;color:#fff;border-radius:999px;padding:2px 10px;font-weight:800;font-size:13px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}.kpi{background:#2e2950;border:2px solid #5a4fb0;border-radius:14px;padding:10px;display:flex;flex-direction:column}.kpi b{font-size:24px;font-family:Fredoka,sans-serif;color:#ffe066;word-break:break-word}.kpi span{font-size:13px;color:#c9c2e8}
+.admlist{display:flex;flex-direction:column;gap:6px;margin-top:8px}.admrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;background:#2a2548;border:2px solid #0d0b1a;border-radius:14px;padding:8px 10px}.admrow>div:first-child{display:flex;flex-direction:column;min-width:200px;flex:1}.admrow.ban{border-color:#ff3d6e}
+.gbox{width:100%}.gbox .txt{flex:1;min-width:90px}
+.pill{border-radius:999px;padding:0 8px;font-size:12px;font-weight:800}.pill.red{background:#ff3d6e;color:#fff}
+.admgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:6px}
+.errlog{background:#120f24;border-radius:12px;padding:8px;max-height:220px;overflow:auto;font-family:ui-monospace,monospace;font-size:12px}.errlog div{border-bottom:1px solid #2e2950;padding:3px 0}
+.pbox.admin .btn{color:#2d1b3d}.pbox.admin .btn.danger{color:#fff}
+.btn.danger{background:#ff3d6e;color:#fff}
+#fps{position:fixed;left:8px;bottom:8px;z-index:80;background:#000a;color:#7dff9a;font:700 13px ui-monospace,monospace;padding:3px 8px;border-radius:8px;pointer-events:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -259,6 +292,8 @@ body.rm *{animation:none!important;transition:none!important}
 <div id="fade"></div><div id="flash"></div>
 <div id="title" class="hide"></div>
 <div id="postal" class="hide"></div>
+<div id="auth" class="hide" role="dialog" aria-label="Acceso a Mitopía"></div>
+<div id="anuncio" class="hide" role="status"></div>
 <div id="tut" class="hide"><div id="tutHole"></div><div id="tutBox"></div></div>
 <div id="rest" class="hide"></div>
 <div id="loader"><div class="ld"><svg viewBox="0 0 260 200" class="isl"><ellipse cx="130" cy="120" rx="110" ry="34" fill="#7ed957" stroke="#2d1b3d" stroke-width="5"/><path d="M24 122q106 120 212 0" fill="#c98a5a" stroke="#2d1b3d" stroke-width="5"/><path d="M124 100V56" stroke="#7a4420" stroke-width="10" stroke-linecap="round"/><circle cx="124" cy="48" r="30" fill="#5cc98a" stroke="#2d1b3d" stroke-width="5"/><circle cx="100" cy="62" r="18" fill="#4fb05a" stroke="#2d1b3d" stroke-width="5"/><circle cx="150" cy="62" r="18" fill="#4fb05a" stroke="#2d1b3d" stroke-width="5"/><path d="M180 104h34v-24l-17-14-17 14z" fill="#ffd08a" stroke="#2d1b3d" stroke-width="4" stroke-linejoin="round"/><path d="M176 82l21-18 21 18" fill="none" stroke="#e8384f" stroke-width="6" stroke-linecap="round"/><circle cx="70" cy="40" r="6" fill="#ffe066"/><circle cx="214" cy="30" r="4" fill="#fff"/><path d="M60 96c0-10 18-10 18 0z" fill="#ff9ec4" stroke="#2d1b3d" stroke-width="3"/></svg><h1>Mitopía</h1><p id="ldt">Despertando a las criaturas…</p><div class="ldbar"><i id="ldb"></i></div></div></div>
@@ -810,6 +845,8 @@ const EV_ACC=[
  ['mano','farol_lunar','Farol del año nuevo lunar',70,'lunar',()=>L('M148 140 L158 90',OUT,3)+E(162,110,16,19,'#e8384f')+R(152,90,20,5,2,'#ffcf3f')+R(152,128,20,5,2,'#ffcf3f')+L('M162 133 L162 148','#ffcf3f',3)],
  ['cabeza','corona_primavera','Corona de primavera',60,'primavera',()=>ap(7,58,142,52,26).map(([x,y],i)=>flower(x,y,8,['#ffb3c6','#c4e2ff','#ffe9a6','#d9c2ff'][i%4],'#fff')).join('')],
  ['cara','lentes_pina','Lentes de piña',55,'verano',()=>lens(x=>E(x,90,14,16,'#ffd23f',1,'')+L(`M${x-8} 80 L${x+8} 100 M${x+8} 80 L${x-8} 100`,'#e3a21a',1.5)+P(`M${x-6} 74 L${x} 64 L${x+6} 74Z`,'#5cc98a'))+L('M92 88 L108 88',OUT,3)],
+ ['cabeza','corona_cempasuchil','Corona de cempasúchil',65,'muertos',()=>ap(7,58,142,50,24).map(([x,y],i)=>flower(x,y,9,i%2?'#ff9a1a':'#ffb43a','#c9502a')).join('')],
+ ['cuello','papel_picado','Collar de papel picado',55,'muertos',()=>L('M58 128 Q100 146 142 128','#7a4420',2)+[0,1,2,3,4].map(i=>{const x=66+i*17,y=132+Math.sin(i/4*Math.PI)*10;return P(`M${x-7} ${y} L${x+7} ${y} L${x+7} ${y+14} L${x} ${y+10} L${x-7} ${y+14}Z`,['#ff5fa2','#ffcf3f','#b07cff','#5cc98a','#4fc3ff'][i])+C(x,y+5,2,'#fff',0)}).join('')],
  ['cabeza','sombrero_playa','Sombrero de playa',60,'verano',()=>E(100,44,76,15,'#f4d38a')+P('M70 44 Q72 6 100 4 Q128 6 130 44Z','#f4d38a')+R(70,30,60,8,3,'#ff5fa2')+flower(126,32,7,'#fff','#ffe066')]
 ];
 EV_ACC.forEach(([sl,id,n,p,ev,d])=>A_(sl,id,n,p,d,{ev}));
@@ -941,16 +978,16 @@ const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),lerp=(a,b,t)=>a+(b-a)*t,rnd=(a,b)=>a+Math.random()*(b-a),pick=a=>a[Math.floor(Math.random()*a.length)];
 const hash=i=>{const x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x)};
 const nz=(x,s)=>Math.sin(x*.0123+s)*.5+Math.sin(x*.031+s*2.1)*.3+Math.sin(x*.077+s*3.7)*.2;
-const SAVE_KEY='mitopia_v1';
+let SAVE_KEY='mitopia_v1',CAN_SAVE=false;const APP_VER='5.0';
 function defState(){return{v:1,coins:200,xp:0,level:1,pets:[],active:0,owned:[],inv:{manzana:3,taco:1},worlds:{},ach:{},stats:{gems:0,games:0,roars:0,caricias:0,comidas:0,banos:0,misiones:0,fotos:0,compras:0},sound:true,music:true,outfits:[],last:Date.now(),tips:0}}
-let ST=null;try{ST=JSON.parse(localStorage.getItem(SAVE_KEY))}catch(e){}
-if(!ST||!ST.v)ST=defState();else{const d=defState();ST={...d,...ST,stats:{...d.stats,...(ST.stats||{})}}}
-window.ST=ST;
-function save(){ST.last=Date.now();try{localStorage.setItem(SAVE_KEY,JSON.stringify(ST))}catch(e){}}
+function readST(key){let s=null;try{s=JSON.parse(localStorage.getItem(key))}catch(e){}if(!s||!s.v||!Array.isArray(s.pets))return null;const d=defState();return{...d,...s,stats:{...d.stats,...(s.stats||{})}}}
+const ST=defState();window.ST=ST;
+function replaceST(n){Object.keys(ST).forEach(k=>delete ST[k]);Object.assign(ST,defState(),n||{})}
+function save(){if(!CAN_SAVE)return;ST.last=Date.now();try{localStorage.setItem(SAVE_KEY,JSON.stringify(ST))}catch(e){}}
 const PET=()=>ST.pets[ST.active];
 const WS=id=>ST.worlds[id]||(ST.worlds[id]={quest:false,best:0,gems:0,visits:0});
 // desgaste mientras no estabas (máx. 40 puntos)
-(()=>{const m=Math.min(40,(Date.now()-(ST.last||Date.now()))/60000*.5);ST.pets.forEach(p=>{for(const k in p.needs)p.needs[k]=clamp(p.needs[k]-m,10,100)})})();
+function offlineDecay(){const m=Math.min(40,(Date.now()-(ST.last||Date.now()))/60000*.5);ST.pets.forEach(p=>{for(const k in p.needs)p.needs[k]=clamp(p.needs[k]-m,10,100)})}
 
 const G={t:0,fierce:false,shake:0,paused:false,keys:{},panel:null};
 const cv=$('#cv'),cx=cv.getContext('2d');let W=innerWidth,H=innerHeight,DPR=1,SC=null;
@@ -1037,7 +1074,7 @@ const LINES={
 /* ---------- recompensas, necesidades, logros ---------- */
 const xpNeed=()=>40+ST.level*30;
 function addCoins(n){ST.coins=Math.max(0,ST.coins+n);updHUD(true);if(n>0)AU.sfx('coin')}
-function addXP(n){ST.xp+=n;while(ST.xp>=xpNeed()){ST.xp-=xpNeed();ST.level++;const b=ST.level*20;ST.coins+=b;toast(`¡Nivel ${ST.level}! Ganaste ${b} monedas`,'gold');AU.sfx('level');const pb=SC&&SC.pet;if(pb){pb.setExpr('happy',2);pb.spin=2;puff(pb.x,pb.y-80,'star',18,{cs:['#ffe066','#fff'],sp:260})}}checkAch();updHUD()}
+function addXP(n){ST.xp+=n;while(ST.xp>=xpNeed()){ST.xp-=xpNeed();ST.level++;const b=ST.level*20;ST.coins+=b;toast(`¡Nivel ${ST.level}! Ganaste ${b} monedas`,'gold');AU.sfx('level');const pb=SC&&SC.pet;if(pb&&pb.setExpr){pb.setExpr('happy',2);pb.spin=2;puff(pb.x,pb.y-80,'star',18,{cs:['#ffe066','#fff'],sp:260})}}checkAch();updHUD()}
 function need(k,d,p=PET()){if(!p)return;p.needs[k]=clamp(p.needs[k]+d,0,100)}
 function decay(dt){const p=PET();if(!p)return;const m=dt/60;need('h',-.9*m);need('e',-.55*m*(SC&&SC.name==='game'?3:1));need('f',-.65*m);need('l',-.45*m)}
 const ACH=[
@@ -1062,7 +1099,7 @@ const ACH=[
 ];
 function checkAch(){ACH.forEach(([id,n,d,f])=>{if(!ST.ach[id]&&f()){ST.ach[id]=Date.now();ST.coins+=50;toast(`Logro desbloqueado: ${n} (+50)`,'gold');AU.sfx('win')}});save()}
 function toast(msg,cls=''){const t=document.createElement('div');t.className='toast '+cls;t.textContent=msg;$('#toasts').appendChild(t);setTimeout(()=>t.classList.add('out'),2900);setTimeout(()=>t.remove(),3400)}
-function roar(){const b=SC&&SC.pet;AU.sfx('roar');G.shake=.5;if(b){b.talk(pick(LINES.roar),1.6);b.squash=-.25;puff(b.x,b.y-60,'ember',26,{sp:340,up:40,g:0,life:.8,s:12,cs:['#ff5a1a','#ffb020','#ffe066']})}ST.stats.roars++;SC&&SC.onRoar&&SC.onRoar();checkAch()}
+function roar(){const b=SC&&SC.pet;AU.sfx('roar');G.shake=.5;if(b&&b.talk){b.talk(pick(LINES.roar),1.6);b.squash=-.25;puff(b.x,b.y-60,'ember',26,{sp:340,up:40,g:0,life:.8,s:12,cs:['#ff5a1a','#ffb020','#ffe066']})}ST.stats.roars++;SC&&SC.onRoar&&SC.onRoar();checkAch()}
 function dayLight(){const h=new Date().getHours()+new Date().getMinutes()/60;if(h>=7&&h<18)return 1;if(h>=18&&h<20)return lerp(1,0,(h-18)/2);if(h>=5&&h<7)return lerp(0,1,(h-5)/2);return 0}
 
 /* ---------- escenas ---------- */
@@ -1082,7 +1119,7 @@ function ptr(e){const r=cv.getBoundingClientRect();return[e.clientX-r.left,e.cli
 cv.addEventListener('pointerdown',e=>{AU.resume();if(!SC)return;const[x,y]=ptr(e);G.down=true;SC.down&&SC.down(x,y,e)});
 cv.addEventListener('pointermove',e=>{if(!SC)return;const[x,y]=ptr(e);SC.move&&SC.move(x,y,G.down)});
 addEventListener('pointerup',e=>{G.down=false;SC&&SC.up&&SC.up()});
-addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;const k=e.key.toLowerCase();G.keys[k]=true;AU.resume();if(G.panel){if(k==='escape')closePanel();return}
+addEventListener('keydown',e=>{if(e.target.matches&&e.target.matches('input,textarea,select'))return;const k=e.key.toLowerCase();G.keys[k]=true;AU.resume();if(G.panel){if(k==='escape')closePanel();return}
  if([' ','arrowup','arrowdown','arrowleft','arrowright'].includes(k))e.preventDefault();SC&&SC.key&&SC.key(k);if(k==='r'&&G.fierce&&SC&&SC.pet)roar();if(k==='f')toggleFierce()});
 addEventListener('keyup',e=>{G.keys[e.key.toLowerCase()]=false});
 
@@ -1395,7 +1432,7 @@ const WSC={
 };
 SCENES.world=WSC;
 function completeQuest(w){const st=WS(w.id);st.quest=true;ST.stats.misiones++;const a=ACC.find(x=>x.quest===w.id);if(a&&!ST.owned.includes(a.id))ST.owned.push(a.id);
- addCoins(120);addXP(60);AU.sfx('win');const p=SC.pet;if(p){p.setExpr('happy',3);p.spin=2.5;puff(p.x,p.y-100,'star',30,{cs:['#ffe066','#fff','#ff5fa2'],sp:320})}
+ addCoins(120);addXP(60);AU.sfx('win');const p=SC&&SC.pet;if(p&&p.setExpr){p.setExpr('happy',3);p.spin=2.5;puff(p.x,p.y-100,'star',30,{cs:['#ffe066','#fff','#ff5fa2'],sp:320})}
  showReward(w,a);setQuestBar();checkAch();save()}
 
 /* ================= Mundo principal: Isla Corazón ================= */
@@ -2145,7 +2182,7 @@ function updHUD(){const p=PET();if(!p||!$('#pname'))return;$('#coinN').textConte
 function showBars(m){$('#hud').classList.toggle('hide',m==='game'||m==='none');$('#wbar').classList.toggle('hide',m!=='world');$('#gbar').classList.toggle('hide',m!=='game');if(m==='world')updGemBar()}
 function setQuestBar(){if(SC!==WSC)return;const w=WSC.w,q=w.quest,done=WS(w.id).quest,n=Math.min(q.n,WSC.f[q.key]||0);$('#quest').innerHTML=done?`<b>Misión cumplida</b><span>${esc(q.text)}</span>`:`<b>Misión ${n}/${q.n}</b><span>${esc(q.text)}</span>`;$('#quest').classList.toggle('done',done)}
 function updGemBar(){if(SC!==WSC)return;const n=WSC.gems.filter(g=>g.got).length;$('#gemc').innerHTML=`<svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2l7 7-7 13-7-13z" fill="#7fd3ff" stroke="#2d1b3d" stroke-width="2" stroke-linejoin="round"/></svg> ${n}/${WSC.gems.length}`}
-function toggleFierce(){G.fierce=!G.fierce;AU.sfx(G.fierce?'roar':'happy');if(G.fierce)G.shake=.3;const b=SC&&SC.pet;if(b){b.talk(G.fierce?'¡Modo feroz activado!':'De vuelta a lo adorable.',1.8);puff(b.x,b.y-70,G.fierce?'ember':'heart',16,{cs:G.fierce?['#ff5a1a','#ffcf3f']:['#ff5fa2','#ff9ec4'],sp:220})}updHUD()}
+function toggleFierce(){G.fierce=!G.fierce;AU.sfx(G.fierce?'roar':'happy');if(G.fierce)G.shake=.3;const b=SC&&SC.pet;if(b&&b.talk){b.talk(G.fierce?'¡Modo feroz activado!':'De vuelta a lo adorable.',1.8);puff(b.x,b.y-70,G.fierce?'ember':'heart',16,{cs:G.fierce?['#ff5a1a','#ffcf3f']:['#ff5fa2','#ff9ec4'],sp:220})}updHUD()}
 
 /* ---------- panel genérico ---------- */
 function openPanel(html,title,cls='',onClose){const pn=$('#panel');pn.innerHTML=`<div class="pbox ${cls}" role="dialog" aria-label="${esc(title)}"><header><h2>${title}</h2><button class="x" aria-label="Cerrar">×</button></header><div class="pbody">${html}</div></div>`;pn.classList.remove('hide');G.panel=true;G.paused=true;G.onClose=onClose;
@@ -2182,7 +2219,7 @@ function wsClick(e){const b=e.target.closest('button');if(!b)return;AU.sfx('tap'
  const a=b.dataset.a;if(a==='rand'){const r=()=>pick(SWATCH);Object.assign(WD,{c1:r(),c2:pick(['#ffffff','#fff0f6','#fff4e6','#e9ffd9','#efe2ff','#eef6ff']),c3:r(),eye:pick(['#3a2a5a','#7a2d12','#1d4f2e','#2b62d9','#b02a6a','#5a3416']),pattern:pick(PATTERNS)[0],eyes:pick(EYES)[0],mouth:pick(MOUTHS)[0]});const acc={};SLOTS.forEach(([s])=>{const own=ACC.filter(x=>x.slot===s&&ST.owned.includes(x.id));if(own.length&&Math.random()<.6)acc[s]=pick(own).id});WD.acc=acc;AU.sfx('happy');wsTab();wsUpd();return}
  if(a==='reset'){const s=SP[WD.species];Object.assign(WD,{c1:s.c[0],c2:s.c[1],c3:s.c[2],eye:s.eye});wsTab();wsUpd();return}
  if(a==='save'){const{c,lock}=wsCost();if(lock){toast(`«${lock.name}» se gana completando la misión del mundo.`);AU.sfx('error');return}if(c>ST.coins){toast(`Te faltan ${c-ST.coins} monedas. Juega minijuegos para ganar más.`);AU.sfx('error');return}
-  for(const s in WD.acc){const id=WD.acc[s];if(id&&!ST.owned.includes(id)){ST.owned.push(id);ST.stats.compras++}}if(c){ST.coins-=c;AU.sfx('buy')}else AU.sfx('happy');const p=PET();const keep=p.needs;Object.keys(WD).forEach(k=>{if(k[0]!=='_')p[k]=JSON.parse(JSON.stringify(WD[k]))});p.needs=keep;save();checkAch();updHUD();closePanel();toast(`¡${p.name} luce increíble!`);const pb=SC&&SC.pet;if(pb){pb.setExpr('happy',2);pb.spin=2;puff(pb.x,pb.y-80,'star',16,{cs:['#ffe066','#fff','#ff5fa2'],sp:220})}return}
+  for(const s in WD.acc){const id=WD.acc[s];if(id&&!ST.owned.includes(id)){ST.owned.push(id);ST.stats.compras++}}if(c){ST.coins-=c;AU.sfx('buy')}else AU.sfx('happy');const p=PET();const keep=p.needs;Object.keys(WD).forEach(k=>{if(k[0]!=='_')p[k]=JSON.parse(JSON.stringify(WD[k]))});p.needs=keep;save();checkAch();updHUD();closePanel();toast(`¡${p.name} luce increíble!`);const pb=SC&&SC.pet;if(pb&&pb.setExpr){pb.setExpr('happy',2);pb.spin=2;puff(pb.x,pb.y-80,'star',16,{cs:['#ffe066','#fff','#ff5fa2'],sp:220})}return}
  const k=b.dataset.k,v=b.dataset.v;if(!k)return;
  switch(k){case'species':{const s=SP[v];WD.species=v;Object.assign(WD,{c1:s.c[0],c2:s.c[1],c3:s.c[2],eye:s.eye});break}
   case'cheeks':WD.cheeks=v==='1';break;case'slot':WD._slot=v;WD._pg=1;break;case'mat':WD._mat=v;WD._pg=1;break;case'more':WD._pg++;break;
@@ -2195,14 +2232,7 @@ function wsClick(e){const b=e.target.closest('button');if(!b)return;AU.sfx('tap'
 function wsInput(e){const k=e.target.dataset.k;if(!k)return;let v=e.target.value;if(k==='size'||k==='build')v=+v;if(k==='name')v=v.slice(0,18)||SP[WD.species].name;WD[k]=v;wsUpd();if(e.target.type==='color')$$(`.sw [data-k=${k}]`).forEach(b=>b.classList.remove('on'))}
 
 /* ---------- CASA ---------- */
-function roomSVG(){const L=dayLight(),sky=mixc('#1a1f5a','#8fd6ff',L);return `<svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="330" fill="#ffd6e6"/>${[...Array(12)].map((_,i)=>`<rect x="${i*70}" y="0" width="34" height="330" fill="#ffc6dc"/>`).join('')}<rect y="320" width="800" height="180" fill="#c98a5a"/>${[...Array(9)].map((_,i)=>`<rect x="0" y="${330+i*22}" width="800" height="2" fill="#a86a3a" opacity=".5"/>`).join('')}<rect y="318" width="800" height="14" fill="#fff6e6" stroke="${OUT}" stroke-width="3"/>
- <rect x="300" y="50" width="200" height="150" rx="14" fill="${sky}" stroke="${OUT}" stroke-width="6"/>${L>.4?`<circle cx="450" cy="90" r="22" fill="#fff3b0"/>`:`<circle cx="450" cy="90" r="18" fill="#fffbe6"/><circle cx="340" cy="80" r="2" fill="#fff"/><circle cx="380" cy="150" r="2" fill="#fff"/>`}<path d="M400 50v150M300 125h200" stroke="${OUT}" stroke-width="5"/><path d="M290 44 Q330 120 300 210 L280 210 L280 44Z M510 44 Q470 120 500 210 L520 210 L520 44Z" fill="#9b5de5" stroke="${OUT}" stroke-width="4"/>
- <ellipse cx="400" cy="440" rx="190" ry="40" fill="#7fd3ff" stroke="${OUT}" stroke-width="4"/><ellipse cx="400" cy="440" rx="150" ry="28" fill="#bfeaff"/>
- <g transform="translate(40 250)">${R(0,60,190,90,20,'#ff9ec4')}${R(0,40,60,110,16,'#b07cff')}${E(52,76,34,16,'#fff')}${R(60,74,130,40,16,'#fff6e6')}</g>
- <g transform="translate(620 250)">${P('M0 70 Q0 140 80 140 Q160 140 160 70Z','#fff')}${E(80,70,80,16,'#bfefff')}${R(130,10,10,70,4,'#c9d3e2')}${E(140,10,16,6,'#c9d3e2')}${C(40,60,8,'#fff',0,'stroke="#bfefff" stroke-width="2"')}${C(70,52,6,'#fff',0,'stroke="#bfefff" stroke-width="2"')}</g>
- <g transform="translate(560 380)">${E(40,30,44,14,'#ff4f6d')}${E(40,24,34,8,'#ffe9a6')}</g>
- <g transform="translate(700 120)">${R(-8,40,16,110,4,'#5a3416')}${C(0,40,40,'#5cc98a')}${C(-26,60,24,'#4fb05a')}${C(26,60,24,'#4fb05a')}</g>
- <g transform="translate(110 70)">${R(0,0,120,90,8,'#fff6e6')}${R(10,10,100,70,4,'#ffe066')}<path d="${heartD(60,48,16)}" fill="#ff5fa2"/></g></svg>`}
+
 let HM={mode:null,scrub:0};
 function openHome(){const p=PET();if(!p){openPets();return}HM={mode:null,scrub:0};
  const body=openPanel(`<div class="home"><div class="room" id="room">${roomSVG()}<div class="hpet" id="hPet"></div><div id="hfx"></div><div class="dark" id="hDark"></div></div>
@@ -2214,7 +2244,7 @@ function openHome(){const p=PET();if(!p){openPets();return}HM={mode:null,scrub:0
  G.homeTimer=setInterval(()=>{if(HM.mode==='sleep'){need('e',3);hNeeds();if(Math.random()<.25)AU.sfx('snore');if(PET().needs.e>=100){wake();toast(`${PET().name} despertó con mucha energía`)}}},500)}
 function hPet(expr){const p=PET();$('#hPet').innerHTML=petSVG(p,{expr:expr||(HM.mode==='sleep'?'sleep':p.needs.h<25||p.needs.f<25?'sad':'normal'),fierce:G.fierce&&!expr});if(expr&&expr!=='sleep')setTimeout(()=>{if($('#hPet')&&HM.mode!=='sleep')hPet()},1600)}
 function hNeeds(){const p=PET();NEEDS.forEach(([k])=>{const el=$('#hn_'+k);if(el)el.style.width=p.needs[k]+'%'});updHUD()}
-function fxAt(cls,x,y,html=''){const d=document.createElement('div');d.className='fx '+cls;d.style.left=x+'px';d.style.top=y+'px';d.innerHTML=html;$('#hfx').appendChild(d);setTimeout(()=>d.remove(),1500)}
+function fxAt(cls,x,y,html=''){const d=document.createElement('div');d.className='fx '+cls;d.style.left=x+'px';d.style.top=y+'px';d.innerHTML=html;const hf=$('#hfx');if(!hf)return;hf.appendChild(d);setTimeout(()=>d.remove(),1500)}
 function caressHome(e){const r=$('#room').getBoundingClientRect();for(let i=0;i<3;i++)setTimeout(()=>fxAt('heart',e.clientX-r.left+rnd(-30,30),e.clientY-r.top),i*90);need('f',3);ST.stats.caricias++;AU.sfx('happy');hPet('love');hNeeds();checkAch();if(ST.stats.caricias%5==0)addXP(2)}
 function wake(){HM.mode=null;$('#hDark').classList.remove('on');$('#room').classList.remove('sleep');hPet('happy');$('#hsub').innerHTML=''}
 function homeClick(e){const b=e.target.closest('button');if(!b)return;AU.sfx('tap');const p=PET(),sub=$('#hsub');
@@ -2229,10 +2259,7 @@ function homeClick(e){const b=e.target.closest('button');if(!b)return;AU.sfx('ta
 
 /* ---------- MERCADO ---------- */
 function deals(){const d=new Date(),seed=d.getFullYear()*400+d.getMonth()*32+d.getDate();const pool=ACC.filter(a=>!a.quest);const out=[];let s=seed;while(out.length<6){s=(s*9301+49297)%233280;const a=pool[s%pool.length];if(!out.includes(a))out.push(a)}return out}
-function openMarket(){const body=openPanel('','Mercado de Isla Corazón','wide');const r=()=>{body.innerHTML=`<p class="note">Tienes <b>${ST.coins}</b> monedas.</p><h4>Comida</h4><div class="grid g6">${Object.entries(FOODS).filter(([k,f])=>f.p).map(([k,f])=>`<div class="card">${`<span class="fimg">${foodSVG(k)}</span>`}<b>${f.n}</b><small>${['h','e','f','l'].filter(n=>f[n]).map(n=>`+${f[n]} ${NEEDS.find(x=>x[0]===n)[1]}`).join(' · ')}</small><small>Tienes ${ST.inv[k]||0}</small><button class="btn sm" data-buy="${k}">${f.p} monedas</button></div>`).join('')}</div>
- <h4>Ofertas del día en accesorios (20% menos)</h4><div class="grid g6">${deals().map(a=>{const own=ST.owned.includes(a.id),pr=Math.round(a.price*.8);return`<div class="card">${mini({...PET(),acc:{[a.slot]:a.id}})}<b>${a.name}</b><small class="r ${a.rar}">${a.rar}</small>${own?'<small>Ya es tuyo</small>':`<button class="btn sm" data-acc="${a.id}" data-pr="${pr}">${pr} monedas</button>`}</div>`}).join('')}</div>`};r();
- body.onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.buy){const f=FOODS[b.dataset.buy];if(ST.coins<f.p){toast('No te alcanzan las monedas.');AU.sfx('error');return}ST.coins-=f.p;ST.inv[b.dataset.buy]=(ST.inv[b.dataset.buy]||0)+1;AU.sfx('buy');save();r();updHUD()}
-  if(b.dataset.acc){const pr=+b.dataset.pr;if(ST.coins<pr){toast('No te alcanzan las monedas.');AU.sfx('error');return}ST.coins-=pr;ST.owned.push(b.dataset.acc);ST.stats.compras++;AU.sfx('buy');toast(`¡${ACC_BY[b.dataset.acc].name} es tuyo! Equípalo en el Taller.`);checkAch();save();r();updHUD()}}}
+
 
 /* ---------- REFUGIO ---------- */
 function openPets(){const body=openPanel('','Refugio de criaturas','wide');const cost=()=>ST.pets.length?150:0;
@@ -2257,31 +2284,13 @@ function openMap(){const body=openPanel(`<p class="note">Viaja directo a cualqui
  body.onclick=e=>{const b=e.target.closest('[data-w]');if(!b)return;const i=+b.dataset.w;closePanel();if(i<0)go('isla');else enterWorld(i)}}
 
 /* ---------- FOTO ---------- */
-function takePhoto(){let src;try{src=cv.toDataURL('image/png')}catch(e){toast('No se pudo tomar la foto en este navegador.');return}AU.sfx('zap');const f=$('#flash');f.classList.remove('on');void f.offsetWidth;f.classList.add('on');ST.stats.fotos++;checkAch();
- const img=new Image();img.onload=()=>{const body=openPanel(`<div class="photo"><img id="phImg" alt="Foto de tu aventura"><div><h4>Marco</h4><div class="chips" id="phF">${[['polaroid','Instantánea'],['oro','Dorado'],['estrellas','Estrellas'],['nada','Sin marco']].map(([k,n],i)=>`<button data-f="${k}" class="${i?'':'on'}">${n}</button>`).join('')}</div><h4>Filtro</h4><div class="chips" id="phL">${[['none','Natural'],['sepia(.6) saturate(1.3)','Cálido'],['contrast(1.1) saturate(1.6) hue-rotate(-12deg)','Vívido'],['grayscale(1) contrast(1.1)','Clásico']].map(([k,n],i)=>`<button data-l="${k}" class="${i?'':'on'}">${n}</button>`).join('')}</div><p class="note">Para guardarla, mantén presionada la imagen en el celular o usa clic derecho y «Guardar imagen».</p></div></div>`,'Modo foto','wide');
-  let fr='polaroid',fl='none';const comp=()=>{const pad=fr==='nada'?0:Math.round(img.width*.04),bot=fr==='polaroid'?Math.round(img.width*.1):pad,o=document.createElement('canvas');o.width=img.width+pad*2;o.height=img.height+pad+bot;const c=o.getContext('2d');
-   c.fillStyle=fr==='oro'?'#e3a21a':fr==='estrellas'?'#1d1b4f':'#fff';c.fillRect(0,0,o.width,o.height);c.filter=fl;c.drawImage(img,pad,pad);c.filter='none';
-   if(fr==='estrellas')for(let i=0;i<60;i++){starP(c,hash(i)*o.width,hash(i+3)*o.height,4+hash(i+7)*8);c.fillStyle=i%2?'#ffe066':'#fff';c.fill()}
-   if(fr==='oro'){c.strokeStyle='#fff3b0';c.lineWidth=pad*.25;c.strokeRect(pad*.5,pad*.5,o.width-pad,o.height-pad)}
-   const fs=Math.round(img.width*.035);c.font=`800 ${fs}px "Baloo 2",sans-serif`;c.fillStyle=fr==='polaroid'?OUT:'#fff';c.textAlign='center';c.fillText(`${PET().name} en ${SC===WSC?WSC.w.name:'Isla Corazón'} · Mitopía`,o.width/2,fr==='polaroid'?img.height+pad+bot*.6:o.height-fs*.6);$('#phImg').src=o.toDataURL('image/png')};comp();
-  body.onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.f){fr=b.dataset.f;$$('#phF button').forEach(x=>x.classList.toggle('on',x===b))}if(b.dataset.l!=null){fl=b.dataset.l;$$('#phL button').forEach(x=>x.classList.toggle('on',x===b))}comp()}};img.src=src}
+
 
 /* ---------- AJUSTES ---------- */
-function openSettings(){const body=openPanel('','Ajustes','');const r=()=>{body.innerHTML=`<div class="chips col"><button data-s="sound" class="${ST.sound?'on':''}">Efectos de sonido: ${ST.sound?'sí':'no'}</button><button data-s="music" class="${ST.music?'on':''}">Música: ${ST.music?'sí':'no'}</button></div>
- <h4>Controles</h4><p class="note">Toca o haz clic para caminar e interactuar. En computadora: flechas o A/D para moverte, espacio para saltar, F para el modo feroz y R para rugir.</p><h4>Tu progreso</h4><p class="note">Se guarda automáticamente en este navegador.</p><button class="btn" data-s="reset">Reiniciar todo el progreso</button><div id="rst"></div>`};r();
- body.onclick=e=>{const b=e.target.closest('button');if(!b)return;const s=b.dataset.s;if(s==='sound'||s==='music'){ST[s]=!ST[s];AU.apply();save();r()}if(s==='reset')$('#rst').innerHTML='<p>¿Seguro? Se borrarán tus criaturas, monedas y logros.</p><button class="btn danger" data-s="really">Sí, borrar todo</button>';if(s==='really'){try{localStorage.removeItem(SAVE_KEY)}catch(e){}location.reload()}}}
+
 
 /* ---------- diálogos con habitantes ---------- */
-function openNPC(S){const n=S.npc,w=S.w,d=$('#dialog');let li=0;G.dlg=true;
- const r=(txt,extra='')=>{const st=WS(w.id),q=w.quest;d.innerHTML=`<div class="dl"><img alt="" src="data:image/svg+xml;charset=utf-8,${encodeURIComponent(npcSVG(n.svg))}"><div class="dt"><b>${n.name}</b><p>${txt}</p>${extra}<div class="row">${n.riddles&&!st.quest?'<button class="btn pri" data-d="riddle">Acertijo</button>':''}<button class="btn" data-d="talk">Platicar</button><button class="btn" data-d="quest">Misión</button><button class="btn" data-d="game">Jugar ${w.game.name}</button><button class="btn" data-d="bye">Adiós</button></div></div></div>`;d.classList.remove('hide')};
- r(n.lines[0]);AU.sfx('happy');
- d.onclick=e=>{const b=e.target.closest('button');if(!b)return;AU.sfx('tap');const k=b.dataset.d,st=WS(w.id),q=w.quest;
-  if(k==='talk'){li=(li+1)%n.lines.length;r(n.lines[li])}
-  if(k==='quest')r(st.quest?'¡Ya cumpliste mi misión! Gracias, de corazón.':`${q.text}. Llevas ${Math.min(q.n,S.f[q.key]||0)} de ${q.n}. Recompensa: 120 monedas y «${(ACC.find(a=>a.quest===w.id)||{}).name}».`);
-  if(k==='game'){closeDialog();startGame(w.game.id)}
-  if(k==='bye')closeDialog();
-  if(k==='riddle'){const R=pick(RIDDLES);r(`«${R[0]}»`,`<div class="row">${R[1].map((o,i)=>`<button class="btn" data-ans="${i===R[2]?1:0}">${o}</button>`).join('')}</div>`)}
-  if(b.dataset.ans!=null){if(b.dataset.ans==='1'){AU.sfx('gem');addXP(4);S.count('acertijos');r(WS(w.id).quest?'Has demostrado tu sabiduría. El medallón es tuyo.':`Correcto. Llevas ${S.f.acertijos} de 3.`)}else{AU.sfx('error');r('Mmm… no es así. Piénsalo otra vez.')}}}}
+
 function closeDialog(){const d=$('#dialog');d.classList.add('hide');d.innerHTML='';G.dlg=false}
 function showReward(w,a){const p=PET();const body=openPanel(`<div class="reward"><div class="stage">${petSVG(a?{...p,acc:{...p.acc,[a.slot]:a.id}}:p,{expr:'happy'})}</div><h3>¡Misión cumplida en ${w.name}!</h3><p>Ganaste <b>120 monedas</b>, <b>60 de experiencia</b>${a?` y el accesorio exclusivo <b>${a.name}</b>`:''}.</p><div class="row">${a?`<button class="btn pri" data-eq="1">Ponérmelo ahora</button>`:''}<button class="btn" data-ok="1">Seguir explorando</button></div></div>`,'¡Recompensa!','');
  body.onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.eq){p.acc[a.slot]=a.id;save();faceKey='';toast(`¡${p.name} estrena ${a.name}!`)}closePanel()}}
@@ -2396,19 +2405,20 @@ function logD(txt,ic='star'){ST.diary.unshift({t:Date.now(),txt,ic});if(ST.diary
 
 /* ---------- nube ---------- */
 const CL={db:null,user:null,uid:null,on:false,writing:false,dirty:false,inbox:[],isl:{},names:{}};
-async function initCloud(){if(typeof claude==='undefined'||!claude.use)return;try{const u=await claude.use('user');CL.user=u;const db=await claude.use('db');if(!db||!u)return;const id=await u.id();if(!id)return;CL.db=db;CL.uid=id;
-  const snap=await Promise.race([db.doc(`data/users/${id}/save`).get(),new Promise((_,r)=>setTimeout(()=>r('t'),10000))]);
-  if(snap&&snap.exists){const d=snap.data();if(d&&d.json&&(d.last>(ST.last||0)+4000||!ST.pets.length)){try{const rem=JSON.parse(d.json);Object.keys(ST).forEach(k=>delete ST[k]);Object.assign(ST,defState(),rem);fixST();faceKey='';applyA11y();toast('Progreso recuperado de tu cuenta en la nube','gold');if(!$('#title').classList.contains('hide')&&ST.pets.length)showTitle()}catch(e){}}}
-  CL.on=true;cloudBadge();publishIsland();listenInbox();listenTrades();checkWeekPrize()}catch(e){CL.on=false;cloudBadge()}}
-function cloudBadge(){const b=$('#cloud');if(b){b.textContent=CL.on?(CL.writing?'Guardando…':'Nube: al día'):'Guardado local';b.classList.toggle('on',CL.on)}}
-async function cloudSave(){if(!CL.on||CL.writing||!CL.dirty)return;CL.writing=true;CL.dirty=false;cloudBadge();try{await CL.db.doc(`data/users/${CL.uid}/save`).set({json:JSON.stringify(ST),last:ST.last||Date.now()})}catch(e){if(e&&e.code==='revoked')CL.on=false}CL.writing=false;cloudBadge()}
-setInterval(()=>{cloudSave();if(CL.on&&Date.now()-(CL.pubAt||0)>120000)publishIsland()},15000);
-const _save=save;save=function(){_save();CL.dirty=true};
+async function initCloud(){if(!AUTH.ok||!AUTH.db||!AUTH.uid)return;const db=AUTH.db,id=AUTH.uid;CL.db=db;CL.uid=id;CL.user=AUTH.user;
+ if(AUTH.mode==='claude'&&AUTH.user){try{if((await AUTH.user.can('data.write'))===false){CL.on=false;CL.ro=true;cloudBadge();return}}catch(e){}}
+ try{const snap=await withTO(db.doc(`data/users/${id}/save`).get(),10000);
+  if(snap&&snap.exists){const d=snap.data();if(d&&d.json&&(d.last>(ST.last||0)+4000||!ST.pets.length)){try{replaceST(JSON.parse(d.json));fixST();faceKey='';applyA11y();save();toast('Progreso recuperado de tu cuenta en la nube','gold');if(!$('#title').classList.contains('hide'))showTitle()}catch(e){logErr('nube: '+e)}}}
+  CL.on=true;CL.dirty=true;cloudBadge();publishIsland();listenInbox();listenTrades();checkWeekPrize()}catch(e){CL.on=false;logErr('nube: '+(e&&(e.message||e.code)));cloudBadge()}}
+function cloudBadge(){const b=$('#cloud');if(b){b.textContent=CL.on?(CL.writing?'Guardando…':'Nube: al día'):CL.ro?'Solo lectura · guardado local':'Guardado local';b.classList.toggle('on',CL.on)}}
+async function cloudSave(){if(!CL.on||CL.writing||!CL.dirty)return;CL.writing=true;CL.dirty=false;cloudBadge();try{await CL.db.doc(`data/users/${CL.uid}/save`).set({json:JSON.stringify(ST),last:ST.last||Date.now()})}catch(e){CL.dirty=true;if(e&&(e.code==='revoked'||e.code==='permission-denied'||e.code==='unauthenticated')){CL.on=false;CL.ro=true}logErr('guardar nube: '+(e&&(e.code||e.message)))}CL.writing=false;cloudBadge()}
+setInterval(()=>{cloudSave();if(CL.on&&PET()&&(!CL.pubKey||Date.now()-(CL.pubAt||0)>120000))publishIsland()},15000);
+const _save=save;save=function(){if(!CAN_SAVE)return;_save();CL.dirty=true};
 const snapPet=p=>({species:p.species,c1:p.c1,c2:p.c2,c3:p.c3,eye:p.eye,pattern:p.pattern,eyes:p.eyes,mouth:p.mouth,acc:p.acc,size:p.size,build:p.build,growth:p.growth??999,name:p.name});
 async function publishIsland(){if(!CL.on||!PET())return;CL.pubAt=Date.now();const d={pet:snapPet(PET()),lv:ST.level,title:ST.title||'',decor:{wall:ST.decor.wall,floor:ST.decor.floor,slots:ST.decor.slots},msg:(ST.msg||'').slice(0,80),at:Date.now()};const k=JSON.stringify({...d,at:0});if(k===CL.pubKey)return;CL.pubKey=k;try{await CL.db.doc('islas/'+CL.uid).set(d)}catch(e){}}
 function listenInbox(){try{CL.db.collection('regalos').where('to','==',CL.uid).onSnapshot(s=>{CL.inbox=s.docs.map(d=>({id:d.id,...d.data()}));const b=$('[data-m=amigos]');if(b)b.classList.toggle('badge',CL.inbox.length>0)},()=>{})}catch(e){}}
 function listenTrades(){try{CL.db.collection('trueques').where('from','==',CL.uid).onSnapshot(async s=>{for(const d of s.docs){const t=d.data();if(t.st==='aceptado'&&!ST.owned.includes(t.want)){ST.owned.push(t.want);toast(`¡Intercambio completado! Recibiste ${ACC_BY[t.want]?.name||'un accesorio'}`,'gold');logD(`Intercambio completado: recibiste ${ACC_BY[t.want]?.name}`,'swap');save();try{await CL.db.doc('trueques/'+d.id).delete()}catch(e){}}}},()=>{})}catch(e){}}
-async function names(ids){const out={};if(CL.user&&CL.user.profiles){try{const ps=await CL.user.profiles(ids);ids.forEach(i=>out[i]=(ps[i]&&ps[i].name)||'')}catch(e){}}return out}
+async function names(ids){const out={};await Promise.all(ids.slice(0,80).map(async i=>{try{const s=await withTO(CL.db.doc('jugadores/'+i).get(),6000);if(s&&s.exists)out[i]=s.data().nick||''}catch(e){}}));return out}
 
 /* ---------- amigos: vecinos, buzón, intercambios ---------- */
 function openFriends(tab='vecinos'){const body=openPanel(`<div class="tabs" id="frT">${[['vecinos','Vecinos'],['buzon','Buzón'+(CL.inbox.length?` (${CL.inbox.length})`:'')],['trueques','Intercambios'],['perfil','Mi isla']].map(([k,n])=>`<button data-f="${k}">${n}</button>`).join('')}</div><div id="frC"></div>`,'Amigos de Mitopía','wide');
@@ -2416,6 +2426,7 @@ function openFriends(tab='vecinos'){const body=openPanel(`<div class="tabs" id="
  const r=async t=>{$$('#frT button').forEach(b=>b.classList.toggle('on',b.dataset.f===t));const C=$('#frC');
   if(t==='perfil'){C.innerHTML=`<div class="adopt"><div class="stage">${petSVG(PET(),{expr:'happy',pose:'wave'})}</div><div><h3>${esc(PET().name)}</h3><p class="note">Nivel ${ST.level}${ST.title?' · '+esc(ST.title):''}</p><h4>Mensaje para tus visitas</h4><input class="txt" id="myMsg" maxlength="80" value="${esc(ST.msg||'')}" placeholder="¡Hola! Bienvenida a mi isla"><div class="row mt"><button class="btn pri" data-f2="msg">Guardar mensaje</button></div>${CL.on?'':off}</div></div>`;return}
   if(!CL.on){C.innerHTML=off;return}
+  const F=AUTH.cfg.func||{};if((t==='vecinos'&&!F.visitas)||(t==='trueques'&&!F.intercambios)||(t==='buzon'&&!F.regalos)){C.innerHTML='<p class="note">Esta función está en pausa por el equipo de Mitopía. Vuelve pronto.</p>';return}
   C.innerHTML='<p class="note">Cargando…</p>';
   if(t==='vecinos'){let s;try{s=await CL.db.collection('islas').orderBy('at','desc').limit(60).get()}catch(e){C.innerHTML='<p class="note">No se pudo cargar la lista. Intenta de nuevo en un momento.</p>';return}
    const docs=s.docs.filter(d=>d.id!==CL.uid);docs.forEach(d=>CL.isl[d.id]=d.data());const nm=await names(docs.map(d=>d.id));
@@ -2430,17 +2441,17 @@ function openFriends(tab='vecinos'){const body=openPanel(`<div class="tabs" id="
   if(b.dataset.f){r(b.dataset.f);return}
   if(b.dataset.f2==='msg'){ST.msg=$('#myMsg').value.slice(0,80);save();publishIsland();toast('Mensaje guardado')}
   if(b.dataset.visit)visitIsland(b.dataset.visit);
-  if(b.dataset.claim){const g=CL.inbox.find(x=>x.id===b.dataset.claim);if(!g)return;if(g.k==='coins')addCoins(g.v);else if(g.k==='food')ST.inv[g.v]=(ST.inv[g.v]||0)+1;else if(!ST.owned.includes(g.v))ST.owned.push(g.v);logD(`Recibiste un regalo de ${g.fromPet||'un vecino'}`,'gift');save();AU.sfx('win');try{await CL.db.doc('regalos/'+g.id).delete()}catch(e){}CL.inbox=CL.inbox.filter(x=>x!==g);r('buzon')}
+  if(b.dataset.claim){const g=CL.inbox.find(x=>x.id===b.dataset.claim);if(!g)return;if(g.k==='coins'){ST.coins+=Math.max(0,Math.min(100000,+g.v||0));updHUD()}else if(g.k==='food')ST.inv[g.v]=(ST.inv[g.v]||0)+1;else if(!ST.owned.includes(g.v))ST.owned.push(g.v);logD(`Recibiste un regalo de ${g.fromPet||'un vecino'}`,'gift');save();AU.sfx('win');try{await CL.db.doc('regalos/'+g.id).delete()}catch(e){}CL.inbox=CL.inbox.filter(x=>x!==g);r('buzon')}
   if(b.dataset.f2==='offer'){const give=$('#tGive').value,want=$('#tWant').value;if(!give||give===want)return;ST.owned=ST.owned.filter(x=>x!==give);for(const s in PET().acc)if(PET().acc[s]===give)delete PET().acc[s];try{await CL.db.collection('trueques').add({from:CL.uid,fromPet:PET().name,give,want,st:'abierto',at:Date.now()});toast('Intercambio publicado');save();r('trueques')}catch(e){ST.owned.push(give);toast('No se pudo publicar. Intenta de nuevo.')}}
   if(b.dataset.cancel){try{const ref=CL.db.doc('trueques/'+b.dataset.cancel),s=await ref.get();if(s.exists&&s.data().st==='abierto'){ST.owned.push(s.data().give);await ref.delete();save();toast('Intercambio cancelado; tu accesorio volvió')}}catch(e){}r('trueques')}
   if(b.dataset.take){try{const ref=CL.db.doc('trueques/'+b.dataset.take),s=await ref.get();const v=s.data();if(!s.exists||v.st!=='abierto'){toast('Alguien más lo aceptó primero');r('trueques');return}if(!ST.owned.includes(v.want))return;await ref.update({st:'aceptado',taker:CL.uid});ST.owned=ST.owned.filter(x=>x!==v.want);for(const sl in PET().acc)if(PET().acc[sl]===v.want)delete PET().acc[sl];if(!ST.owned.includes(v.give))ST.owned.push(v.give);save();AU.sfx('win');celebrate();toast(`¡Ahora tienes ${ACC_BY[v.give].name}!`,'gold');logD(`Intercambiaste y obtuviste ${ACC_BY[v.give].name}`,'swap')}catch(e){toast('No se pudo completar el intercambio')}r('trueques')}}}
 function visitIsland(id){const v=CL.isl[id];if(!v)return;const p={...newPet(v.pet.species),...v.pet};const body=openPanel(`<div class="home"><div class="room">${roomSVG(v.decor)}<div class="hpet">${petSVG(p,{expr:'happy',pose:'wave'})}</div></div><div class="hside"><h3>Isla de ${esc(p.name)}</h3><p class="note">Nivel ${v.lv||1}${v.title?' · '+esc(v.title):''}</p>${v.msg?`<p>«${esc(v.msg)}»</p>`:''}<h4>Enviar un regalo</h4><div class="chips col"><button data-g="coins" data-v="20">20 monedas</button>${Object.entries(ST.inv).filter(([k,n])=>n>0&&FOODS[k]).slice(0,4).map(([k])=>`<button data-g="food" data-v="${k}">${FOODS[k].n}</button>`).join('')}</div><input class="txt mt" id="gNota" maxlength="60" placeholder="Nota (opcional)"><p class="note">Los accesorios se pueden dar en Intercambios.</p></div></div>`,'De visita','wide');
- body.onclick=async e=>{const b=e.target.closest('[data-g]');if(!b)return;const k=b.dataset.g,val=b.dataset.v;if(k==='coins'){if(ST.coins<20){toast('No te alcanzan las monedas');return}ST.coins-=20}else{if(!(ST.inv[val]>0))return;ST.inv[val]--}
+ body.onclick=async e=>{const b=e.target.closest('[data-g]');if(!b)return;if(!AUTH.cfg.func.regalos){toast('Los regalos están en pausa por el equipo.');return}const k=b.dataset.g,val=b.dataset.v;if(k==='coins'){if(ST.coins<20){toast('No te alcanzan las monedas');return}ST.coins-=20}else{if(!(ST.inv[val]>0))return;ST.inv[val]--}
   try{await CL.db.collection('regalos').add({to:id,from:CL.uid,fromPet:PET().name,k,v:k==='coins'?20:val,nota:($('#gNota').value||'').slice(0,60),at:Date.now()});toast('¡Regalo enviado!','gold');AU.sfx('buy');inc('regalos');logD(`Le enviaste un regalo a ${p.name}`,'gift');save()}catch(err){if(k==='coins')ST.coins+=20;else ST.inv[val]++;toast('No se pudo enviar el regalo')}updHUD()}}
 
 /* ---------- clasificaciones y torneo ---------- */
 const GIDS=()=>WORLDS.map(w=>w.game.id);
-const tourGame=(wk=weekId())=>{const n=+wk.split('S')[1]||0;return GIDS()[n%GIDS().length]};
+let tourGame=(wk=weekId())=>{const n=+wk.split('S')[1]||0;return GIDS()[n%GIDS().length]};
 async function postRecord(gid,score){const wk=weekId();ST.rec=ST.rec||{best:{},wk:'',ws:0,pwk:'',pws:0};const R=ST.rec;let ch=false;if(score>(R.best[gid]||0)){R.best[gid]=score;ch=true}
  if(R.wk!==wk){if(R.wk){R.pwk=R.wk;R.pws=R.ws}R.wk=wk;R.ws=0;ch=true}if(gid===tourGame()&&score>R.ws){R.ws=score;ch=true;toast('¡Nuevo puntaje en el torneo semanal!','gold')}
  if(ch&&CL.on){try{await CL.db.doc('records/'+CL.uid).set({best:R.best,wk:R.wk,ws:R.ws,pwk:R.pwk,pws:R.pws,pet:PET().name,at:Date.now()})}catch(e){}}}
@@ -2448,7 +2459,7 @@ async function checkWeekPrize(){if(!CL.on)return;try{const s=await CL.db.collect
 function openRanking(){const gl=WORLDS.map(w=>[w.game.id,w.game.name]);const body=openPanel(`<div class="row"><label>Juego: <select id="rkG"><option value="__t">Torneo de la semana</option>${gl.map(([id,n])=>`<option value="${id}">${esc(n)}</option>`).join('')}</select></label></div><div id="rkC" class="mt"></div>`,'Clasificaciones','wide');
  const r=async()=>{const sel=$('#rkG').value,tour=sel==='__t',gid=tour?tourGame():sel,gname=gl.find(x=>x[0]===gid)[1],C=$('#rkC');
   let head=tour?`<p class="note">Esta semana se compite en <b>${esc(gname)}</b>. Los 3 primeros lugares ganan 300, 200 y 100 monedas y el título «Campeón semanal» (se entrega al volver la siguiente semana).</p><button class="btn sm" data-play="${gid}">Jugar ${esc(gname)}</button>`:'';
-  if(!CL.on){C.innerHTML=head+`<p class="note">Tus récords: ${esc(gname)}: <b>${WS(WORLDS.find(w=>w.game.id===gid).id).best||0}</b>. Para ver la clasificación general necesitas el guardado en la nube.</p>`;return}
+  if(!CL.on||!AUTH.cfg.func.clasificacion){C.innerHTML=head+`<p class="note">Tus récords: ${esc(gname)}: <b>${WS(WORLDS.find(w=>w.game.id===gid).id).best||0}</b>. Para ver la clasificación general necesitas el guardado en la nube.</p>`;return}
   C.innerHTML=head+'<p class="note">Cargando…</p>';let s;try{s=await CL.db.collection('records').limit(500).get()}catch(e){C.innerHTML=head+'<p class="note">No se pudo cargar.</p>';return}
   const wk=weekId();const rows=s.docs.map(d=>({id:d.id,...d.data()})).map(x=>({id:x.id,pet:x.pet,sc:tour?(x.wk===wk?x.ws:0):(x.best||{})[gid]||0})).filter(x=>x.sc>0).sort((a,b)=>b.sc-a.sc).slice(0,20);const nm=await names(rows.map(x=>x.id));
   C.innerHTML=head+(rows.length?`<table class="rk"><thead><tr><th>#</th><th>Criatura</th><th>Jugador</th><th>Puntos</th></tr></thead><tbody>${rows.map((x,i)=>`<tr class="${x.id===CL.uid?'me':''}"><td>${i+1}</td><td>${esc(x.pet||'')}</td><td>${esc(nm[x.id]||'—')}</td><td>${x.sc}</td></tr>`).join('')}</tbody></table>`:'<p class="note">Aún no hay puntajes. ¡Sé la primera persona!</p>')};
@@ -2506,7 +2517,7 @@ function applyA11y(){const c=ST.cfg;document.body.classList.toggle('hc',!!c.cont
 
 /* ---------- tutorial guiado ---------- */
 const TUT=[[null,'¡Hola! Soy Lumi, la estrellita guía de Mitopía. Te enseño todo en un momento.'],['#pcard','Aquí ves a tu criatura, su nivel y su etapa de crecimiento: bebé, joven o adulto.'],['#needs','Cuida sus necesidades: hambre, energía, felicidad y limpieza.'],['[data-m=casa]','En la Casa la alimentas, la bañas, la acuestas y decoras su cuarto.'],['[data-m=taller]','En el Taller cambias su aspecto: colores, ropa y más de 600 accesorios.'],['[data-m=misiones]','Cumple misiones diarias y semanales para ganar premios.'],['[data-m=amigos]','Visita a tus amigos, envía regalos e intercambia accesorios.'],['[data-m=mas]','Aquí están el Álbum, el Diario, las Clasificaciones, la Foto, los Ajustes y el panel para familias.'],[null,'En el Gran Globo, arrástralo para girarlo y toca una tierra o una isla flotante para viajar. ¡A explorar!']];
-function startTut(i=0){const T2=$('#tut');if(i>=TUT.length){T2.classList.add('hide');ST.cfg.tut=1;save();return}const[sel,txt]=TUT[i],el=sel&&$(sel);T2.classList.remove('hide');const hole=$('#tutHole');if(el){const r=el.getBoundingClientRect();Object.assign(hole.style,{left:r.left-8+'px',top:r.top-8+'px',width:r.width+16+'px',height:r.height+16+'px',display:'block',border:''})}else Object.assign(hole.style,{left:'50%',top:'50%',width:'0px',height:'0px',display:'block',border:'0'});
+function startTut(i=0){const T2=$('#tut');if(i>=TUT.length){T2.classList.add('hide');ST.cfg.tut=1;save();return}const[sel,txt]=TUT[i],el=sel&&$(sel);T2.classList.remove('hide');const hole=$('#tutHole');if(el){const r=el.getBoundingClientRect();Object.assign(hole.style,{left:r.left-8+'px',top:r.top-8+'px',width:r.width+16+'px',height:r.height+16+'px',display:'block',border:''})}else hole.style.display='none';T2.classList.toggle('dim',!el);
  const bx=$('#tutBox');bx.innerHTML=`<div class="tutlumi">${LUMI}</div><p>${txt}</p><div class="row"><button class="btn" data-tt="skip">Saltar</button><button class="btn pri" data-tt="next">${i<TUT.length-1?'Siguiente':'¡Listo!'}</button></div><small>${i+1} / ${TUT.length}</small>`;
  if(el){const r=el.getBoundingClientRect();bx.style.top=Math.min(innerHeight-190,r.bottom+16)+'px';bx.style.left=clamp(r.left,12,innerWidth-340)+'px'}else{bx.style.top=innerHeight/2-80+'px';bx.style.left=innerWidth/2-160+'px'}
  bx.onclick=e=>{const b=e.target.closest('[data-tt]');if(!b)return;AU.sfx('tap');if(b.dataset.tt==='skip')startTut(99);else startTut(i+1)}}
@@ -2526,7 +2537,8 @@ function openParents(ok){if(ST.par.pin&&!ok){const body=openPanel(`<p>Escribe el
 
 /* ---------- exportar / importar e instalación ---------- */
 const exportCode=()=>btoa(unescape(encodeURIComponent(JSON.stringify(ST))));
-async function doExport(){const data=JSON.stringify(ST,null,1);try{const dl=typeof claude!=='undefined'&&await claude.use('downloads');if(dl){await dl.save({filename:'mitopia-respaldo.json',data});toast('Respaldo descargado');return}}catch(e){}try{await navigator.clipboard.writeText(exportCode());toast('Código de respaldo copiado. Pégalo en un lugar seguro.')}catch(e){toast('No se pudo copiar; usa el cuadro de texto.')}}
+async function saveFile(filename,data,type){if(AUTH.dl){try{await AUTH.dl.save({filename,data});return'ok'}catch(e){if(e&&e.code==='declined')return'no';if(e&&e.code==='rate_limited'){toast('Ya hay una descarga esperando tu respuesta.');return'no'}}}try{const blob=data instanceof Blob?data:new Blob([data],{type:type||'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);return'ok'}catch(e){return'fail'}}
+async function doExport(){const r=await saveFile('mitopia-respaldo.json',JSON.stringify(ST,null,1));if(r==='ok'){toast('Respaldo descargado');return}if(r==='no')return;try{await navigator.clipboard.writeText(exportCode());toast('Código de respaldo copiado. Pégalo en un lugar seguro.')}catch(e){toast('No se pudo exportar; intenta desde otro navegador.')}}
 function doImport(txt){try{let d;try{d=JSON.parse(txt)}catch(e){d=JSON.parse(decodeURIComponent(escape(atob(txt.trim()))))}if(!d||!d.v||!Array.isArray(d.pets))throw 0;try{localStorage.setItem(SAVE_KEY,JSON.stringify(d))}catch(e){}Object.keys(ST).forEach(k=>delete ST[k]);Object.assign(ST,defState(),d);save();toast('Respaldo cargado','gold');setTimeout(()=>location.reload(),800)}catch(e){toast('Ese respaldo no es válido')}}
 let BIP=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();BIP=e});
 if('serviceWorker'in navigator&&window.top===window&&location.protocol==='https:'){navigator.serviceWorker.register('sw.js').catch(()=>{})}
@@ -2631,12 +2643,12 @@ const _oa=openAlbum;openAlbum=function(tab){_oa(tab);$('#alT').insertAdjacentHTM
   $('#alC').innerHTML=`<p class="note">Cada logro tiene tres medallas: bronce, plata y oro. La medalla de oro da un título.</p><div class="grid g2">${TIERS.map(([k,n,th,title])=>{const lv=ST.tier[k]||0,nx=th[Math.min(lv,2)],v=stat(k);return`<div class="card row-card"><div class="medals">${[0,1,2].map(i=>`<span class="med m${i} ${lv>i?'got':''}" title="${['Bronce','Plata','Oro'][i]}"></span>`).join('')}</div><div><b>${n}</b><small>${lv>=3?'¡Completo! Título: '+esc(title):`Siguiente medalla: ${Math.min(v,nx)} / ${nx}`}</small><div class="bar big"><i style="width:${lv>=3?100:Math.min(100,v/nx*100)}%;background:${['#cd7f32','#b8c4d6','#ffcf3f'][Math.min(lv,2)]}"></i></div></div></div>`}).join('')}</div>`})};
 
 /* ---------- diario de aventuras ---------- */
-const PH_KEY='mitopia_fotos';const getPh=()=>{try{return JSON.parse(localStorage.getItem(PH_KEY))||[]}catch(e){return[]}};
+const phKey=()=>'mitopia_fotos:'+(AUTH.uid||'');const getPh=()=>{try{return JSON.parse(localStorage.getItem(phKey()))||[]}catch(e){return[]}};
 function openDiary(){const body=openPanel(`<div class="tabs" id="diT"><button data-di="t" class="on">Bitácora</button><button data-di="f">Fotos</button></div><div id="diC"></div>`,`Diario de ${esc(PET()?PET().name:'aventuras')}`,'wide');
  const r=t=>{$$('#diT button').forEach(b=>b.classList.toggle('on',b.dataset.di===t));const C=$('#diC');
   if(t==='t'){if(!ST.diary.length){C.innerHTML='<p class="note">Tu diario está vacío. ¡Sal a explorar y aquí quedará cada aventura!</p>';return}let lastD='';C.innerHTML='<div class="diary">'+ST.diary.map(e=>{const d=new Date(e.t),ds=d.toLocaleDateString('es-MX',{weekday:'long',day:'numeric',month:'long'});const h=ds!==lastD?`<h4>${ds}</h4>`:'';lastD=ds;return h+`<div class="dent"><span class="dt-i">${icc({star:'ayuda',gift:'amigos',swap:'amigos',trophy:'ranking',medal:'ranking',grow:'refugio',map:'mapa',book:'album',check:'misiones',game:'mas',up:'ayuda',heart:'amigos',home:'casa'}[e.ic]||'ayuda',22)}</span><span>${esc(e.txt)}</span><small>${d.toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'})}</small></div>`}).join('')+'</div>'}
   else{const ph=getPh();C.innerHTML=ph.length?`<div class="grid g3">${ph.map((p,i)=>`<div class="card"><img src="${p.src}" alt="Foto del diario"><small>${esc(p.txt||'')}</small><small>${new Date(p.t).toLocaleDateString('es-MX')}</small><button class="btn sm" data-dph="${i}">Quitar</button></div>`).join('')}</div>`:'<p class="note">Guarda fotos desde el Modo foto para verlas aquí (máximo 12).</p>'}};r('t');
- body.onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.di)r(b.dataset.di);if(b.dataset.dph!=null){const ph=getPh();ph.splice(+b.dataset.dph,1);try{localStorage.setItem(PH_KEY,JSON.stringify(ph))}catch(err){}r('f')}}}
+ body.onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.di)r(b.dataset.di);if(b.dataset.dph!=null){const ph=getPh();ph.splice(+b.dataset.dph,1);try{localStorage.setItem(phKey(),JSON.stringify(ph))}catch(err){}r('f')}}}
 
 /* ---------- modo foto avanzado ---------- */
 const STK=[['corazon','Corazón'],['estrella','Estrella'],['arcoiris','Arcoíris'],['corona','Corona'],['brillos','Brillos'],['huella','Huellita'],['nube','Nube'],['hola','¡Hola!']];
@@ -2674,8 +2686,8 @@ function takePhoto(){const cap=()=>{try{return cv.toDataURL('image/jpeg',.92)}ca
   if(b.dataset.f){fr=b.dataset.f;$$('#phF button').forEach(x=>x.classList.toggle('on',x===b))}if(b.dataset.l!=null){fl=b.dataset.l;$$('#phL button').forEach(x=>x.classList.toggle('on',x===b))}
   if(b.dataset.s){sel=sel===b.dataset.s?null:b.dataset.s;$$('.stk button').forEach(x=>x.classList.toggle('on',x.dataset.s===sel));$('#phHint').textContent=sel?'Toca la foto donde quieras pegarla.':'Elige una calcomanía y toca la foto para pegarla.';return}
   if(b.dataset.u){stk.pop()}
-  if(b.dataset.sv){const o=comp.last;if(!o)return;const t=document.createElement('canvas'),k=260/o.width;t.width=260;t.height=Math.round(o.height*k);t.getContext('2d').drawImage(o,0,0,t.width,t.height);const ph=getPh();ph.unshift({t:Date.now(),src:t.toDataURL('image/jpeg',.72),txt:`${PET().name} en ${wname}`});if(ph.length>12)ph.length=12;try{localStorage.setItem(PH_KEY,JSON.stringify(ph));toast('Foto guardada en el diario','gold');logD(`Foto de ${PET().name} en ${wname}`,'star')}catch(err){toast('No hay espacio para más fotos; quita alguna del diario.')}return}
-  if(b.dataset.dl){const o=comp.last;if(!o)return;const url=o.toDataURL('image/png');try{const dl=typeof claude!=='undefined'&&await claude.use('downloads');if(dl){const blob=await (await fetch(url)).blob();await dl.save({filename:'mitopia-foto.png',data:blob});return}}catch(err){}const a=document.createElement('a');a.href=url;a.download='mitopia-foto.png';document.body.appendChild(a);a.click();a.remove();return}
+  if(b.dataset.sv){const o=comp.last;if(!o)return;const t=document.createElement('canvas'),k=260/o.width;t.width=260;t.height=Math.round(o.height*k);t.getContext('2d').drawImage(o,0,0,t.width,t.height);const ph=getPh();ph.unshift({t:Date.now(),src:t.toDataURL('image/jpeg',.72),txt:`${PET().name} en ${wname}`});if(ph.length>12)ph.length=12;try{localStorage.setItem(phKey(),JSON.stringify(ph));toast('Foto guardada en el diario','gold');logD(`Foto de ${PET().name} en ${wname}`,'star')}catch(err){toast('No hay espacio para más fotos; quita alguna del diario.')}return}
+  if(b.dataset.dl){const o=comp.last;if(!o)return;o.toBlob(async blob=>{if(!blob)return;const r=await saveFile('mitopia-foto.png',blob,'image/png');if(r==='ok')toast('Foto descargada')},'image/png');return}
   comp()}}
 
 /* ---------- ajustes ---------- */
@@ -2683,6 +2695,7 @@ function openSettings(){const body=openPanel('','Ajustes','');const c=ST.cfg;con
  <h4>Accesibilidad</h4><div class="chips col"><button data-s="contrast" class="${c.contrast?'on':''}">Alto contraste: ${c.contrast?'sí':'no'}</button><button data-s="motion" class="${!c.motion?'on':''}">Menos movimiento: ${c.motion?'no':'sí'}</button></div><div class="chips">${[[1,'Texto normal'],[1.15,'Texto grande'],[1.3,'Texto muy grande']].map(([v,n])=>`<button data-tz="${v}" class="${c.text===v?'on':''}">${n}</button>`).join('')}</div>
  <p class="note">Teclado: Tab para moverte por los botones, Enter para elegir y Esc para cerrar. En los mundos: flechas o A/D para caminar, espacio para saltar, F modo feroz, R rugir. Atajos: C casa, T taller, M misiones, P foto.</p>
  <h4>Recordatorios</h4><div class="chips col"><button data-s="remind" class="${c.remind?'on':''}">Avisos de necesidades: ${c.remind?'sí':'no'}</button><button data-s="notif" class="${c.notif?'on':''}">Avisos del navegador cuando la pestaña está en segundo plano: ${c.notif?'sí':'no'}</button></div>
+ <h4>Tu cuenta</h4><div class="acard"><b>${esc(AUTH.nick||'')}</b><span>${esc(AUTH.email||'Cuenta verificada')}</span></div><div class="row"><button class="btn" data-s="logout">Cerrar sesión</button></div>
  <h4>Tu progreso</h4><p class="note">${CL.on?'Se guarda en tu cuenta en la nube y en este navegador.':'Se guarda en este navegador. Usa el respaldo para llevarlo a otro dispositivo.'}</p><div class="row"><button class="btn" data-s="export">Exportar respaldo</button><button class="btn" data-s="import">Importar respaldo</button></div><div id="impB"></div>
  <h4>Instalar como app</h4><p class="note">${BIP?'Tu navegador permite instalar Mitopía en tu dispositivo.':'Para instalarla como app, Mitopía debe publicarse en tu propio dominio con el paquete de instalación incluido. Aquí funciona como página.'}</p>${BIP?'<button class="btn pri" data-s="install">Instalar Mitopía</button>':''}
  <h4>Ayuda</h4><div class="row"><button class="btn" data-s="tut">Repetir el tutorial con Lumi</button><button class="btn" data-s="par">Panel para familias</button></div>
@@ -2692,13 +2705,13 @@ function openSettings(){const body=openPanel('','Ajustes','');const c=ST.cfg;con
   if(s==='contrast'||s==='remind'){c[s]=!c[s];applyA11y();save();r()}if(s==='motion'){c.motion=!c.motion;applyA11y();save();r()}
   if(b.dataset.tz){c.text=+b.dataset.tz;applyA11y();save();r()}
   if(s==='notif'){if(!c.notif&&window.Notification){try{const p=await Notification.requestPermission();c.notif=p==='granted';if(!c.notif)toast('El navegador no dio permiso para avisos.')}catch(err){toast('Este navegador no permite avisos aquí.')}}else c.notif=false;save();r()}
-  if(s==='export')doExport();
+  if(s==='export')doExport();if(s==='logout')logout();
   if(s==='import'){$('#impB').innerHTML=`<p class="note">Elige el archivo de respaldo o pega el código.</p><input type="file" id="impF" accept=".json,application/json"><textarea class="txt" id="impT" rows="3" placeholder="Pega aquí tu código de respaldo"></textarea><button class="btn pri mt" data-s="doimp">Cargar respaldo</button>`;$('#impF').onchange=ev=>{const f=ev.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>doImport(rd.result);rd.readAsText(f)}}
   if(s==='doimp')doImport($('#impT').value);
   if(s==='install'&&BIP){BIP.prompt();BIP=null;r()}
   if(s==='tut'){closePanel();startTut(0)}if(s==='par'){closePanel();openParents()}
   if(s==='reset')$('#rst').innerHTML='<p>¿Seguro? Se borrarán tus criaturas, monedas y logros de este navegador.</p><button class="btn danger" data-s="really">Sí, borrar todo</button>';
-  if(s==='really'){try{localStorage.removeItem(SAVE_KEY);localStorage.removeItem(PH_KEY)}catch(err){}if(CL.on){try{await CL.db.doc(`data/users/${CL.uid}/save`).delete()}catch(err){}}location.reload()}}}
+  if(s==='really'){try{localStorage.removeItem(SAVE_KEY);localStorage.removeItem(phKey())}catch(err){}if(CL.on){try{await CL.db.doc(`data/users/${CL.uid}/save`).delete()}catch(err){}}location.reload()}}}
 
 /* ---------- diálogos con historia ---------- */
 function openNPC(S){const n=S.npc,w=S.w,d=$('#dialog');let li=0;G.dlg=true;S.pet.pose='wave';S.pet.poseT=2.5;voice();
@@ -2715,19 +2728,213 @@ function openNPC(S){const n=S.npc,w=S.w,d=$('#dialog');let li=0;G.dlg=true;S.pet
   if(b.dataset.ans!=null){if(b.dataset.ans==='1'){AU.sfx('gem');addXP(4);S.count('acertijos');r(WS(w.id).quest?'Has demostrado tu sabiduría. El medallón es tuyo.':`Correcto. Llevas ${S.f.acertijos} de 3.`)}else{AU.sfx('error');r('Mmm… no es así. Piénsalo otra vez.')}}}}
 
 /* ---------- atajos de teclado ---------- */
-addEventListener('keydown',e=>{if(e.target.matches('input,textarea,select')||G.panel||!PET()||!SC||SC.name==='game'||!$('#title').classList.contains('hide'))return;const k=e.key.toLowerCase(),a={c:'casa',t:'taller',m:'misiones',p:'foto'}[k];if(a){AU.sfx('tap');MACT[a]()}});
+addEventListener('keydown',e=>{if(e.ctrlKey||e.altKey||e.metaKey||e.target.matches('input,textarea,select')||G.panel||!PET()||!SC||SC.name==='game'||!$('#title').classList.contains('hide'))return;const k=e.key.toLowerCase(),a={c:'casa',t:'taller',m:'misiones',p:'foto'}[k];if(a){AU.sfx('tap');MACT[a]()}});
 
 /* ---------- tutorial automático la primera vez ---------- */
-setInterval(()=>{if(!ST.cfg.tut&&PET()&&SC&&(SC.name==='globo'||SC.name==='isla')&&!G.panel&&$('#title').classList.contains('hide')&&$('#tut').classList.contains('hide')&&!$('#hud').classList.contains('hide'))startTut(0)},1500);
+let tutOk=0;setInterval(()=>{const ok=!ST.cfg.tut&&PET()&&SC&&(SC.name==='globo'||SC.name==='isla')&&!G.panel&&!G.dlg&&$('#title').classList.contains('hide')&&$('#tut').classList.contains('hide')&&!$('#hud').classList.contains('hide');tutOk=ok?tutOk+1:0;if(tutOk>=3){tutOk=0;startTut(0)}},1000);
+const _op=openPanel;openPanel=function(...a){const t=$('#tut');if(t&&!t.classList.contains('hide'))t.classList.add('hide');return _op.apply(this,a)};
 
-/* ================= Arranque con pantalla de carga ================= */
+/* ================= Cuentas: registro e inicio de sesión con correo ================= */
+/* Dos modos:
+   claude  → identidad verificada por la cuenta (correo) de quien abre la página publicada.
+   server  → servidor propio (paquete instalable): correo + contraseña + código de verificación. */
+const AUTH={mode:null,ok:false,uid:null,email:'',nick:'',admin:false,user:null,db:null,dl:null,reg:null,cfg:{},banned:false};
+const ERRLOG=[];const logErr=(m)=>{ERRLOG.unshift({t:Date.now(),m:String(m).slice(0,400)});if(ERRLOG.length>40)ERRLOG.length=40};
+addEventListener('error',e=>logErr((e.message||'error')+(e.filename?` @${e.lineno}:${e.colno}`:'')));
+addEventListener('unhandledrejection',e=>logErr('promesa: '+((e.reason&&(e.reason.message||e.reason.code))||e.reason)));
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const withTO=(p,ms,v=null)=>Promise.race([p,sleep(ms).then(()=>v)]);
+const validNick=s=>/^[\p{L}\p{N} _.-]{3,20}$/u.test(s.trim());
+const validEmail=s=>/^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,}$/.test(s.trim());
+
+/* ---------- cliente REST que imita la base de datos (modo servidor) ---------- */
+function restDB(base){const api=async(m,u,b)=>{const r=await fetch(base+u,{method:m,credentials:'same-origin',headers:b?{'content-type':'application/json'}:{},body:b?JSON.stringify(b):undefined});if(!r.ok){let j={};try{j=await r.json()}catch(e){}const er=new Error(j.detail||r.statusText);er.code=r.status===403?'permission-denied':r.status===401?'unauthenticated':'error';throw er}return r.status===204?null:r.json()};
+ const snap=(path,d)=>({id:path.split('/').pop(),exists:!!d,data:()=>d||undefined,ref:{path}});
+ const doc=path=>({path,id:path.split('/').pop(),get:async()=>snap(path,(await api('GET','/doc?path='+encodeURIComponent(path))).data),set:(data,o)=>api('PUT','/doc',{path,data,merge:!!(o&&o.merge)}),update:data=>api('PUT','/doc',{path,data,merge:true}),delete:()=>api('DELETE','/doc?path='+encodeURIComponent(path)),
+  onSnapshot(cb,err){let last='';const tick=async()=>{try{const s=await this.get();const k=JSON.stringify(s.data());if(k!==last){last=k;cb(s)}}catch(e){err&&err(e)}};tick();const iv=setInterval(tick,8000);return()=>clearInterval(iv)}});
+ const query=(coll,q={where:[],order:null,lim:0})=>({where:(f,op,v)=>query(coll,{...q,where:[...q.where,[f,op,v]]}),orderBy:(f,dir='asc')=>query(coll,{...q,order:[f,dir]}),limit:n=>query(coll,{...q,lim:n}),
+  get:async()=>{const r=await api('POST','/query',{coll,where:q.where,order:q.order,limit:q.lim});const docs=r.docs.map(d=>snap(coll+'/'+d.id,d.data));return{docs,size:docs.length,empty:!docs.length}},
+  onSnapshot(cb,err){let last='';const tick=async()=>{try{const s=await this.get();const k=JSON.stringify(s.docs.map(d=>[d.id,d.data()]));if(k!==last){last=k;cb(s)}}catch(e){err&&err(e)}};tick();const iv=setInterval(tick,8000);return()=>clearInterval(iv)},
+  add:async data=>{const r=await api('POST','/add',{coll,data});return doc(coll+'/'+r.id)},doc:id=>doc(coll+'/'+id)});
+ return{doc,collection:c=>query(c),api}}
+
+/* ---------- pantalla de acceso ---------- */
+function authScreen(html){const a=$('#auth');a.innerHTML=`<div class="abg"></div><div class="abox"><div class="alogo"><span class="alumi">${LUMI}</span><h1>Mitopía</h1></div>${html}</div>`;a.classList.remove('hide');const f=a.querySelector('input:not([readonly])');if(f)setTimeout(()=>f.focus(),60);return a}
+const amsg=(t,ok)=>{const m=$('#aMsg');if(m){m.textContent=t;m.className='amsg '+(ok?'ok':'err')}};
+const busy=(b,on)=>{if(!b)return;b.disabled=on;b.dataset.l=b.dataset.l||b.textContent;b.textContent=on?'Un momento…':b.dataset.l};
+const RULES='<details class="rules"><summary>Leer las reglas de convivencia</summary><ul><li>Trata con respeto a todas las personas.</li><li>No compartas datos personales (dirección, teléfono, escuela) en mensajes ni nombres.</li><li>Nada de groserías ni burlas en nombres, notas o mensajes.</li><li>Los intercambios son justos y voluntarios.</li><li>El equipo de Mitopía puede borrar contenido o suspender cuentas que no respeten estas reglas.</li></ul></details>';
+const legalChecks=`${RULES}<label class="chk"><input type="checkbox" id="aRules"> Acepto las reglas de convivencia</label><label class="chk"><input type="checkbox" id="aAge"> Soy mayor de edad, o una persona adulta me dio permiso de jugar</label>`;
+
+async function authGate(){
+ if(window.MITOPIA_API){AUTH.mode='server';AUTH.db=restDB(window.MITOPIA_API);return serverGate()}
+ authScreen('<p class="asub">Verificando tu cuenta…</p><div class="aspin"></div>');
+ let tries=0;while(typeof claude==='undefined'&&tries<30){await sleep(100);tries++}
+ if(typeof claude==='undefined'||!claude.use){noAccount('Esta copia de Mitopía no está conectada a un sistema de cuentas.');return new Promise(()=>{})}
+ const [u,db,dl]=await Promise.all([withTO(claude.use('user'),12000),withTO(claude.use('db'),12000),withTO(claude.use('downloads'),12000)]);
+ if(!u){noAccount('Para jugar necesitas iniciar sesión con tu cuenta. Entra con tu correo y vuelve a abrir esta página.');return new Promise(()=>{})}
+ AUTH.mode='claude';AUTH.user=u;AUTH.db=db;AUTH.dl=dl;
+ try{AUTH.uid=await u.id()}catch(e){}
+ if(!AUTH.uid){noAccount('No pudimos confirmar tu cuenta. Revisa que hayas iniciado sesión.');return new Promise(()=>{})}
+ try{const me=await u.me();AUTH.email=(me&&me.email)||'';if(!AUTH.email){const ps=await u.profiles([AUTH.uid]);AUTH.email=(ps[AUTH.uid]&&ps[AUTH.uid].email)||''}}catch(e){}
+ try{AUTH.admin=!!(await u.isOwner())}catch(e){}
+ // registro en la base compartida o, si no hay permiso de escritura, en este navegador
+ let reg=null;try{if(db){const s=await withTO(db.doc('jugadores/'+AUTH.uid).get(),10000);if(s&&s.exists)reg=s.data()}}catch(e){}
+ if(!reg){try{reg=JSON.parse(localStorage.getItem('mitopia_reg:'+AUTH.uid))}catch(e){}}
+ await loadGlobalCfg();
+ if(await checkBan())return new Promise(()=>{});
+ return new Promise(res=>{AUTH._res=res;reg?loginScreen(reg):registerScreen()})}
+function noAccount(t){authScreen(`<h2>Inicia sesión para entrar</h2><p>${t}</p><p class="note">Mitopía exige una cuenta asociada a un correo electrónico para cuidar a todas las personas que juegan.</p><button class="btn pri big" onclick="location.reload()">Intentar de nuevo</button>`)}
+function registerScreen(){const a=authScreen(`<h2>Crea tu cuenta de Mitopía</h2><p class="asub">Tu cuenta queda asociada a este correo verificado:</p><input class="txt" readonly value="${esc(AUTH.email||'Correo de tu cuenta')}" aria-label="Correo">
+ <label class="lbl" for="aNick">Nombre de jugador</label><input class="txt" id="aNick" maxlength="20" placeholder="Por ejemplo: Luna Estelar" autocomplete="nickname"><small class="note">De 3 a 20 letras o números. Es lo que verán las demás personas.</small>${legalChecks}
+ <div id="aMsg" class="amsg"></div><button class="btn pri big" id="aGo">Crear mi cuenta</button>`);
+ a.onclick=async e=>{if(e.target.id!=='aGo')return;const nick=$('#aNick').value.trim();if(!validNick(nick))return amsg('Escribe un nombre de jugador de 3 a 20 letras o números.');if(!$('#aRules').checked||!$('#aAge').checked)return amsg('Marca las dos casillas para continuar.');busy(e.target,true);
+  const reg={nick,creado:Date.now(),visto:Date.now(),v:APP_VER};try{localStorage.setItem('mitopia_reg:'+AUTH.uid,JSON.stringify(reg))}catch(err){}
+  try{if(AUTH.db)await withTO(AUTH.db.doc('jugadores/'+AUTH.uid).set(reg),10000)}catch(err){}
+  AUTH.reg=reg;AUTH.nick=nick;finishLogin(true)};
+ a.onkeydown=e=>{if(e.key==='Enter'){const b=$('#aGo');b&&b.click()}}}
+function loginScreen(reg){const a=authScreen(`<h2>Iniciar sesión</h2><div class="acard"><b>${esc(reg.nick)}</b><span>${esc(AUTH.email||'Cuenta verificada')}</span></div><button class="btn pri big" id="aGo">Entrar a Mitopía</button><p class="note">¿No eres tú? Cierra la sesión de tu cuenta en este navegador y entra con tu propio correo.</p>`);
+ a.onclick=e=>{if(e.target.id==='aGo'){busy(e.target,true);AUTH.reg=reg;AUTH.nick=reg.nick;finishLogin(false)}};a.onkeydown=e=>{if(e.key==='Enter')$('#aGo').click()}}
+
+/* ---------- modo servidor propio ---------- */
+async function serverGate(){authScreen('<p class="asub">Conectando…</p><div class="aspin"></div>');let me=null;try{me=await AUTH.db.api('GET','/yo')}catch(e){}
+ return new Promise(res=>{AUTH._res=res;if(me&&me.id){setServerUser(me);if(me.banned)return bannedScreen();loginScreen({nick:me.nick})}else srvScreen('entrar')})}
+function setServerUser(me){AUTH.uid=me.id;AUTH.email=me.email;AUTH.nick=me.nick;AUTH.admin=!!me.admin;AUTH.banned=!!me.banned}
+function srvScreen(t,email=''){const tabs=`<div class="tabs"><button data-as="entrar" class="${t==='entrar'?'on':''}">Iniciar sesión</button><button data-as="crear" class="${t==='crear'?'on':''}">Crear cuenta</button></div>`;
+ const body={entrar:`${tabs}<label class="lbl" for="aE">Correo electrónico</label><input class="txt" id="aE" type="email" autocomplete="email" value="${esc(email)}"><label class="lbl" for="aP">Contraseña</label><input class="txt" id="aP" type="password" autocomplete="current-password"><div id="aMsg" class="amsg"></div><button class="btn pri big" data-aa="entrar">Entrar</button><button class="btn link" data-as="olvido">¿Olvidaste tu contraseña?</button>`,
+  crear:`${tabs}<label class="lbl" for="aE">Correo electrónico</label><input class="txt" id="aE" type="email" autocomplete="email" value="${esc(email)}"><label class="lbl" for="aNick">Nombre de jugador</label><input class="txt" id="aNick" maxlength="20" autocomplete="nickname"><label class="lbl" for="aP">Contraseña (mínimo 8 caracteres)</label><input class="txt" id="aP" type="password" autocomplete="new-password"><label class="lbl" for="aP2">Repite la contraseña</label><input class="txt" id="aP2" type="password" autocomplete="new-password">${legalChecks}<div id="aMsg" class="amsg"></div><button class="btn pri big" data-aa="crear">Crear cuenta</button>`,
+  verificar:`<h2>Revisa tu correo</h2><p>Te enviamos un código de 6 números a <b>${esc(email)}</b>. Escríbelo aquí para activar tu cuenta.</p><input class="txt code" id="aC" inputmode="numeric" maxlength="6" autocomplete="one-time-code"><div id="aMsg" class="amsg"></div><button class="btn pri big" data-aa="verificar">Activar cuenta</button><button class="btn link" data-aa="reenviar">Enviar otro código</button><button class="btn link" data-as="entrar">Volver</button>`,
+  olvido:`<h2>Recupera tu contraseña</h2><label class="lbl" for="aE">Correo electrónico</label><input class="txt" id="aE" type="email" value="${esc(email)}"><div id="aMsg" class="amsg"></div><button class="btn pri big" data-aa="olvido">Enviar código</button><button class="btn link" data-as="entrar">Volver</button>`,
+  nueva:`<h2>Nueva contraseña</h2><p>Escribe el código que llegó a <b>${esc(email)}</b> y tu nueva contraseña.</p><input class="txt code" id="aC" inputmode="numeric" maxlength="6"><label class="lbl" for="aP">Nueva contraseña</label><input class="txt" id="aP" type="password" autocomplete="new-password"><div id="aMsg" class="amsg"></div><button class="btn pri big" data-aa="nueva">Guardar contraseña</button><button class="btn link" data-as="entrar">Volver</button>`}[t];
+ const a=authScreen(body);a.dataset.email=email;
+ const doit=async b=>{const k=b.dataset.aa,E=($('#aE')||{}).value?.trim()||a.dataset.email,api=AUTH.db.api;busy(b,true);try{
+   if(k==='entrar'){if(!validEmail(E))throw new Error('Escribe un correo válido.');const me=await api('POST','/entrar',{email:E,password:$('#aP').value});if(me.verificar)return srvScreen('verificar',E);setServerUser(me);if(me.banned)return bannedScreen();AUTH.reg={nick:me.nick};return finishLogin(false)}
+   if(k==='crear'){const nick=$('#aNick').value.trim(),p=$('#aP').value;if(!validEmail(E))throw new Error('Escribe un correo válido.');if(!validNick(nick))throw new Error('El nombre de jugador debe tener de 3 a 20 letras o números.');if(p.length<8)throw new Error('La contraseña debe tener al menos 8 caracteres.');if(p!==$('#aP2').value)throw new Error('Las contraseñas no coinciden.');if(!$('#aRules').checked||!$('#aAge').checked)throw new Error('Marca las dos casillas para continuar.');await api('POST','/registro',{email:E,nick,password:p,adulto:true,reglas:true});return srvScreen('verificar',E)}
+   if(k==='verificar'){const me=await api('POST','/verificar',{email:E,code:$('#aC').value.trim()});setServerUser(me);AUTH.reg={nick:me.nick};return finishLogin(true)}
+   if(k==='reenviar'){await api('POST','/reenviar',{email:E});amsg('Listo: revisa tu correo (y la carpeta de spam).',true)}
+   if(k==='olvido'){if(!validEmail(E))throw new Error('Escribe un correo válido.');await api('POST','/recuperar',{email:E});return srvScreen('nueva',E)}
+   if(k==='nueva'){const p=$('#aP').value;if(p.length<8)throw new Error('La contraseña debe tener al menos 8 caracteres.');await api('POST','/restablecer',{email:E,code:$('#aC').value.trim(),password:p});amsg('Contraseña actualizada. Ya puedes entrar.',true);return setTimeout(()=>srvScreen('entrar',E),1200)}
+  }catch(err){amsg(err.message||'No se pudo completar. Intenta de nuevo.')}finally{busy(b,false)}};
+ a.onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.as)return srvScreen(b.dataset.as,($('#aE')||{}).value||email);if(b.dataset.aa)doit(b)};
+ a.onkeydown=e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT'){const b=a.querySelector('[data-aa]');b&&doit(b)}}}
+function bannedScreen(){authScreen(`<h2>Cuenta suspendida</h2><p>Esta cuenta no puede entrar a Mitopía por no respetar las reglas de convivencia.</p><p class="note">Si crees que es un error, comunícate con el equipo de Mitopía.</p>`)}
+
+/* ---------- configuración global, bloqueos y mantenimiento ---------- */
+const CFG_DEF={anuncio:'',evento:'auto',monedasX:1,xpX:1,mantenimiento:false,mantMsg:'Estamos mejorando Mitopía. Vuelve en un ratito.',torneo:'auto',func:{regalos:true,intercambios:true,visitas:true,clasificacion:true}};
+async function loadGlobalCfg(){AUTH.cfg={...CFG_DEF};if(!AUTH.db)return;try{const s=await withTO(AUTH.db.doc('config/global').get(),8000);if(s&&s.exists)applyCfg(s.data())}catch(e){}
+ try{AUTH.db.doc('config/global').onSnapshot(s=>{if(s.exists)applyCfg(s.data())},()=>{})}catch(e){}}
+function applyCfg(d){AUTH.cfg={...CFG_DEF,...(d||{}),func:{...CFG_DEF.func,...((d&&d.func)||{})}};const c=AUTH.cfg;
+ const an=$('#anuncio');if(an){const seen=sessionStorage.getItem('mitopia_anuncio');an.classList.toggle('hide',!c.anuncio||seen===c.anuncio||!AUTH.ok);an.innerHTML=c.anuncio?`<span>${esc(c.anuncio)}</span><button aria-label="Cerrar aviso">×</button>`:'';an.onclick=e=>{if(e.target.closest('button')){sessionStorage.setItem('mitopia_anuncio',c.anuncio);an.classList.add('hide')}}}
+ if(c.mantenimiento&&!AUTH.admin&&AUTH.ok)authScreen(`<h2>Mitopía está en mantenimiento</h2><p>${esc(c.mantMsg)}</p><button class="btn pri big" onclick="location.reload()">Volver a intentar</button>`);
+ if(AUTH.ok&&typeof updHUD==='function')updHUD()}
+async function checkBan(){if(AUTH.mode==='server')return AUTH.banned?(bannedScreen(),true):false;if(!AUTH.db)return false;try{const s=await withTO(AUTH.db.doc('bans/'+AUTH.uid).get(),8000);if(s&&s.exists&&s.data().ban){bannedScreen();return true}}catch(e){}return false}
+const _ce=curEvent;curEvent=function(d){const e=AUTH.cfg&&AUTH.cfg.evento;if(e==='ninguno')return null;if(e&&e!=='auto'){const x=EVENTS.find(v=>v.id===e);if(x)return x}return _ce(d)};
+const _ac2=addCoins;addCoins=function(n){if(n>0&&AUTH.cfg&&AUTH.cfg.monedasX>1)n=Math.round(n*AUTH.cfg.monedasX);_ac2(n)};
+const _ax2=addXP;addXP=function(n){if(n>0&&AUTH.cfg&&AUTH.cfg.xpX>1)n=Math.round(n*AUTH.cfg.xpX);_ax2(n)};
+const _tg=tourGame;tourGame=function(wk){const t=AUTH.cfg&&AUTH.cfg.torneo;return t&&t!=='auto'&&GAMES[t]?t:_tg(wk)};
+
+/* ---------- después de entrar: partida de la cuenta ---------- */
+function finishLogin(nuevo){
+ SAVE_KEY='mitopia_v1:'+AUTH.uid;let s=readST(SAVE_KEY);
+ if(!s&&!localStorage.getItem('mitopia_migrado')){const old=readST('mitopia_v1');if(old&&old.pets.length){s=old;try{localStorage.setItem('mitopia_migrado',AUTH.uid)}catch(e){}}}
+ replaceST(s);fixST();offlineDecay();CAN_SAVE=true;AUTH.ok=true;save();applyA11y();
+ if(AUTH.db&&!nuevo&&AUTH.mode==='claude'){const r={...(AUTH.reg||{}),visto:Date.now()};AUTH.db.doc('jugadores/'+AUTH.uid).set(r).catch(()=>{})}
+ if(AUTH.mode==='server'&&AUTH.db)AUTH.db.api('POST','/visto',{}).catch(()=>{});
+ const a=$('#auth');a.classList.add('out');setTimeout(()=>{a.classList.add('hide');a.classList.remove('out')},450);
+ applyCfg(AUTH.cfg);if(nuevo)toast(`¡Bienvenida, ${AUTH.nick}! Tu cuenta está lista.`,'gold');
+ const r=AUTH._res;AUTH._res=null;r&&r()}
+async function logout(){save();await cloudSave();if(AUTH.mode==='server'){try{await AUTH.db.api('POST','/salir',{})}catch(e){}}try{sessionStorage.removeItem('mitopia_anuncio')}catch(e){}CAN_SAVE=false;location.reload()}
+
+/* ================= Centro de mando (modo oculto del administrador) ================= */
+/* Se abre con Ctrl + Alt + M, o tocando 7 veces seguidas las monedas.
+   Solo responde a la cuenta administradora: dueña de la página (modo Claude) o correo en ADMIN_EMAILS (servidor propio).
+   A cualquier otra persona no le muestra nada. */
+const ADM={tab:'resumen',taps:0,tapT:0,fps:0};
+addEventListener('keydown',e=>{if(e.ctrlKey&&e.altKey&&e.code==='KeyM'){e.preventDefault();tryAdmin()}});
+document.addEventListener('pointerdown',e=>{if(!e.target.closest('#coins'))return;const n=performance.now();ADM.taps=n-ADM.tapT<700?ADM.taps+1:1;ADM.tapT=n;if(ADM.taps>=7){ADM.taps=0;tryAdmin()}},true);
+async function tryAdmin(){if(!AUTH.ok||!AUTH.admin)return;if(AUTH.mode==='claude'){try{if(!(await AUTH.user.isOwner()))return}catch(e){return}}openAdmin()}
+const fmtD=t=>t?new Date(t).toLocaleString('es-MX',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'—';
+async function admList(coll,n=1000){try{const s=await withTO(AUTH.db.collection(coll).limit(n).get(),12000);return s?s.docs.map(d=>({id:d.id,...d.data()})):[]}catch(e){logErr('admin '+coll+': '+(e.code||e.message));return[]}}
+async function admPlayers(){if(AUTH.mode==='server'){try{return(await AUTH.db.api('GET','/admin/jugadores')).jugadores}catch(e){return[]}}
+ const[J,I,B,R]=await Promise.all(['jugadores','islas','bans','records'].map(c=>admList(c)));const by={};const add=(id,o)=>by[id]={id,...(by[id]||{}),...o};
+ J.forEach(j=>add(j.id,{nick:j.nick,creado:j.creado,visto:j.visto}));I.forEach(i=>add(i.id,{pet:i.pet&&i.pet.name,lv:i.lv,msg:i.msg,isla:1}));B.forEach(b=>add(b.id,{banned:!!b.ban}));R.forEach(r=>add(r.id,{ws:r.ws}));
+ const ids=Object.keys(by);if(ids.length&&AUTH.user){try{const ps=await AUTH.user.profiles(ids);ids.forEach(id=>{const p=ps[id]||{};by[id].email=p.email||'';by[id].name=p.name||''})}catch(e){}}
+ return Object.values(by).sort((a,b)=>(b.visto||0)-(a.visto||0))}
+async function admBan(id,ban){if(AUTH.mode==='server')return AUTH.db.api('POST','/admin/ban',{id,ban});return ban?AUTH.db.doc('bans/'+id).set({ban:true,at:Date.now()}):AUTH.db.doc('bans/'+id).delete()}
+async function admGift(id,coins,nota){return AUTH.db.collection('regalos').add({to:id,from:AUTH.uid,fromPet:'Equipo Mitopía',k:'coins',v:coins,nota,at:Date.now(),admin:true})}
+function sure(b){if(b.dataset.sure)return true;b.dataset.sure=1;const t=b.textContent;b.textContent='¿Seguro? Toca otra vez';b.classList.add('danger');setTimeout(()=>{if(b.isConnected){delete b.dataset.sure;b.textContent=t}},3500);return false}
+function measureFPS(){return new Promise(r=>{let n=0;const t0=performance.now();const f=()=>{n++;performance.now()-t0<1000?requestAnimationFrame(f):r(n)};requestAnimationFrame(f)})}
+
+function openAdmin(tab){ADM.tab=tab||ADM.tab;const T=[['resumen','Resumen'],['jugadores','Jugadores'],['moderacion','Moderación'],['mundo','Mundo'],['partida','Mi partida'],['diag','Diagnóstico']];
+ const body=openPanel(`<div class="admbar"><span class="admtag">Administración</span><span>${esc(AUTH.nick||'')} · ${esc(AUTH.email||'')}</span></div><div class="tabs" id="admT">${T.map(([k,n])=>`<button data-at="${k}">${n}</button>`).join('')}</div><div id="admC"><p class="note">Cargando…</p></div>`,'Centro de mando','wide admin');
+ const C=()=>$('#admC');
+ const R={
+  async resumen(){const[P,G2,T2]=await Promise.all([admPlayers(),admList('regalos',500),admList('trueques',500)]);const day=Date.now()-864e5,wk=Date.now()-7*864e5;
+   C().innerHTML=`<div class="kpis">${[['Cuentas registradas',P.filter(p=>p.nick).length],['Activas hoy',P.filter(p=>p.visto>day).length],['Activas en 7 días',P.filter(p=>p.visto>wk).length],['Islas publicadas',P.filter(p=>p.isla).length],['Regalos pendientes',G2.length],['Intercambios abiertos',T2.filter(t=>t.st==='abierto').length],['Cuentas suspendidas',P.filter(p=>p.banned).length],['Evento activo',(curEvent()||{name:'Ninguno'}).name]].map(([k,v])=>`<div class="kpi"><b>${esc(String(v))}</b><span>${k}</span></div>`).join('')}</div>
+   <h4>Últimas visitas</h4><table class="rk"><tbody>${P.slice(0,8).map(p=>`<tr><td>${esc(p.nick||'(sin registro)')}</td><td>${esc(p.email||'')}</td><td>${fmtD(p.visto)}</td></tr>`).join('')||'<tr><td>Aún no hay cuentas.</td></tr>'}</tbody></table>
+   <p class="note">Modo de cuentas: ${AUTH.mode==='server'?'servidor propio':'cuentas de Claude'}. ${AUTH.mode==='claude'?'Solo cuentan quienes pudieron guardar su registro en la nube (colaboradores invitados).':''}</p>`},
+  async jugadores(){const P=await admPlayers();ADM.P=P;const q=(ADM.q||'').toLowerCase();const L=P.filter(p=>!q||[p.nick,p.email,p.pet,p.name].join(' ').toLowerCase().includes(q));
+   C().innerHTML=`<input class="txt" id="admQ" placeholder="Buscar por nombre, correo o criatura" value="${esc(ADM.q||'')}"><div class="admlist">${L.map(p=>`<div class="admrow ${p.banned?'ban':''}"><div><b>${esc(p.nick||'(sin registro)')}</b> ${p.banned?'<span class="pill red">Suspendida</span>':''}<small>${esc(p.email||'correo no disponible')} · criatura: ${esc(p.pet||'—')} · nivel ${p.lv||'—'}</small><small>Alta: ${fmtD(p.creado)} · Última visita: ${fmtD(p.visto)}</small>${p.msg?`<small>Mensaje: «${esc(p.msg)}»</small>`:''}</div><div class="row">${p.isla?`<button class="btn sm" data-av="${p.id}">Ver isla</button>`:''}<button class="btn sm" data-ag="${p.id}">Regalar monedas</button>${p.id===AUTH.uid?'':`<button class="btn sm ${p.banned?'':'danger'}" data-ab="${p.id}" data-on="${p.banned?0:1}">${p.banned?'Quitar suspensión':'Suspender'}</button>`}${p.isla?`<button class="btn sm" data-ai="${p.id}">Borrar isla</button>`:''}${p.ws!=null?`<button class="btn sm" data-ar="${p.id}">Borrar récords</button>`:''}</div></div>`).join('')||'<p class="note">No hay cuentas que coincidan.</p>'}</div>`;
+   const qi=$('#admQ');qi.oninput=()=>{ADM.q=qi.value;clearTimeout(ADM.qt);ADM.qt=setTimeout(()=>R.jugadores().then(()=>{const n=$('#admQ');n.focus();n.setSelectionRange(n.value.length,n.value.length)}),350)}},
+  async moderacion(){const[G2,T2,I]=await Promise.all([admList('regalos',300),admList('trueques',300),admList('islas',1000)]);
+   C().innerHTML=`<h4>Mensajes de islas</h4>${I.filter(i=>i.msg).map(i=>`<div class="admrow"><div><b>${esc(i.pet&&i.pet.name||'')}</b><small>«${esc(i.msg)}»</small></div><button class="btn sm danger" data-am="${i.id}">Borrar mensaje</button></div>`).join('')||'<p class="note">No hay mensajes.</p>'}
+   <h4>Regalos pendientes (${G2.length})</h4>${G2.slice(0,100).map(g=>`<div class="admrow"><div><b>${g.k==='coins'?g.v+' monedas':esc(g.k==='food'?(FOODS[g.v]||{}).n:(ACC_BY[g.v]||{}).name)}</b><small>De ${esc(g.fromPet||'')} · ${fmtD(g.at)}${g.nota?` · «${esc(g.nota)}»`:''}</small></div><button class="btn sm danger" data-dg="${g.id}">Eliminar</button></div>`).join('')||'<p class="note">Sin regalos pendientes.</p>'}
+   <h4>Intercambios (${T2.length})</h4>${T2.slice(0,100).map(t=>`<div class="admrow"><div><b>${esc((ACC_BY[t.give]||{}).name||t.give)} → ${esc((ACC_BY[t.want]||{}).name||t.want)}</b><small>${esc(t.fromPet||'')} · ${esc(t.st)} · ${fmtD(t.at)}</small></div><button class="btn sm danger" data-dt="${t.id}">Eliminar</button></div>`).join('')||'<p class="note">Sin intercambios.</p>'}
+   <p class="note">Al eliminar un intercambio abierto, el accesorio no regresa automáticamente a quien lo ofreció: regálale el accesorio o monedas si hace falta.</p>`},
+  mundo(){const c=AUTH.cfg;C().innerHTML=`<p class="note">Estos ajustes llegan a todas las personas en unos segundos.</p>
+   <h4>Aviso para todos</h4><textarea class="txt" id="cfA" rows="2" maxlength="160" placeholder="Por ejemplo: ¡Este fin de semana monedas dobles!">${esc(c.anuncio)}</textarea>
+   <h4>Evento de temporada</h4><select class="txt" id="cfE"><option value="auto">Automático por fecha</option><option value="ninguno">Ninguno</option>${EVENTS.map(e=>`<option value="${e.id}" ${c.evento===e.id?'selected':''}>${esc(e.name)}</option>`).join('')}</select>
+   <h4>Multiplicadores</h4><div class="row"><label>Monedas <select class="txt" id="cfM">${[1,1.5,2,3].map(v=>`<option ${c.monedasX==v?'selected':''}>${v}</option>`).join('')}</select></label><label>Experiencia <select class="txt" id="cfX">${[1,1.5,2,3].map(v=>`<option ${c.xpX==v?'selected':''}>${v}</option>`).join('')}</select></label></div>
+   <h4>Torneo semanal</h4><select class="txt" id="cfT"><option value="auto">Automático (cambia cada semana)</option>${WORLDS.map(w=>`<option value="${w.game.id}" ${c.torneo===w.game.id?'selected':''}>${esc(w.game.name)}</option>`).join('')}</select>
+   <h4>Funciones</h4><div class="chips col">${[['visitas','Visitas a islas'],['regalos','Regalos'],['intercambios','Intercambios'],['clasificacion','Clasificación general']].map(([k,n])=>`<label class="chk"><input type="checkbox" data-cf="${k}" ${c.func[k]?'checked':''}> ${n}</label>`).join('')}</div>
+   <h4>Mantenimiento</h4><label class="chk"><input type="checkbox" id="cfMt" ${c.mantenimiento?'checked':''}> Cerrar Mitopía para todos menos para ti</label><input class="txt" id="cfMm" maxlength="140" value="${esc(c.mantMsg)}">
+   <div class="row mt"><button class="btn pri" data-cfg="save">Publicar cambios</button></div>`},
+  partida(){C().innerHTML=`<p class="note">Herramientas del creador: afectan solo a tu partida.</p><div class="admgrid">${[['c1k','+1,000 monedas'],['c10k','+10,000 monedas'],['lv','Subir 5 niveles'],['need','Necesidades al 100'],['acc','Desbloquear los 628 accesorios'],['comp','Todas las mascotitas'],['furn','Todos los muebles'],['quest','Cumplir todas las misiones de mundo'],['story','Completar todas las historias'],['bebe','Etapa: bebé'],['joven','Etapa: joven'],['adulto','Etapa: adulta'],['mis','Completar misiones de hoy'],['tut','Reiniciar tutorial'],['fps','Mostrar u ocultar FPS'],['conf','Probar celebración']].map(([k,n])=>`<button class="btn" data-ap="${k}">${n}</button>`).join('')}</div>
+   <h4>Viajar a</h4><select class="txt" id="apW">${WORLDS.map((w,i)=>`<option value="${i}">${esc(w.name)}</option>`).join('')}</select><div class="row"><button class="btn sm" data-ap="ir">Ir al mundo</button><button class="btn sm" data-ap="jugar">Abrir su minijuego</button></div>`},
+  async diag(){const fps=await measureFPS();let bytes=0;try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);bytes+=(localStorage.getItem(k)||'').length*2}}catch(e){}
+   C().innerHTML=`<div class="kpis">${[['Versión',APP_VER],['Cuentas',AUTH.mode==='server'?'Servidor propio':'Claude'],['Nube',CL.on?'Activa':CL.ro?'Solo lectura':'Local'],['FPS ahora',fps],['Pantalla',`${innerWidth}×${innerHeight} @${DPR}x`],['Escena',SC?SC.name:'—'],['Imágenes en memoria',IMG.size],['Almacenamiento local',Math.round(bytes/1024)+' KB']].map(([k,v])=>`<div class="kpi"><b>${esc(String(v))}</b><span>${k}</span></div>`).join('')}</div>
+   <h4>Errores registrados (${ERRLOG.length})</h4>${ERRLOG.length?`<div class="errlog">${ERRLOG.map(e=>`<div><small>${fmtD(e.t)}</small> ${esc(e.m)}</div>`).join('')}</div><button class="btn sm" data-dx="clr">Vaciar lista</button>`:'<p class="note">Sin errores en esta sesión.</p>'}
+   <h4>Datos</h4><div class="row"><button class="btn" data-dx="exp">Exportar base de datos (JSON)</button><button class="btn" data-dx="img">Liberar memoria de imágenes</button></div><p class="note">Identificador de tu cuenta: <code>${esc(AUTH.uid||'')}</code></p>`}};
+ const show=async t=>{ADM.tab=t;$$('#admT button').forEach(b=>b.classList.toggle('on',b.dataset.at===t));C().innerHTML='<p class="note">Cargando…</p>';try{await R[t]()}catch(e){C().innerHTML='<p class="note">No se pudo cargar esta sección.</p>';logErr('admin: '+e)}};show(ADM.tab);
+ body.onclick=async e=>{const b=e.target.closest('button');if(!b)return;AU.sfx('tap');const d=b.dataset,db=AUTH.db;
+  const run=async(fn,ok)=>{busy(b,true);try{await fn();ok&&toast(ok,'gold')}catch(err){toast('No se pudo: '+(err.message||err.code||'error'));logErr('admin acción: '+(err.message||err.code))}busy(b,false)};
+  if(d.at)return show(d.at);
+  if(d.av){const s=await db.doc('islas/'+d.av).get();if(s.exists){CL.isl[d.av]=s.data();visitIsland(d.av)}return}
+  if(d.ag){const row=b.closest('.admrow');if(!row.querySelector('.gbox')){row.insertAdjacentHTML('beforeend',`<div class="gbox row"><input class="txt" type="number" min="1" max="100000" value="100" aria-label="Monedas"><input class="txt" maxlength="60" placeholder="Nota (opcional)" aria-label="Nota"><button class="btn sm pri" data-ags="${d.ag}">Enviar</button></div>`)}return}
+  if(d.ags){const box=b.closest('.gbox'),[ni,ti]=box.querySelectorAll('input'),n=parseInt(ni.value,10);if(!(n>0&&n<=100000))return toast('Escribe una cantidad de 1 a 100,000.');return run(()=>admGift(d.ags,n,ti.value.trim()||'Regalo del equipo de Mitopía'),'Regalo enviado').then(()=>box.remove())}
+  if(d.ab){const on=d.on==='1';if(on&&!sure(b))return;return run(()=>admBan(d.ab,on),on?'Cuenta suspendida':'Suspensión retirada').then(()=>show('jugadores'))}
+  if(d.ai){if(!sure(b))return;return run(()=>db.doc('islas/'+d.ai).delete(),'Isla borrada').then(()=>show('jugadores'))}
+  if(d.ar){if(!sure(b))return;return run(()=>db.doc('records/'+d.ar).delete(),'Récords borrados').then(()=>show('jugadores'))}
+  if(d.am)return run(()=>db.doc('islas/'+d.am).update({msg:''}),'Mensaje borrado').then(()=>show('moderacion'));
+  if(d.dg)return run(()=>db.doc('regalos/'+d.dg).delete(),'Regalo eliminado').then(()=>show('moderacion'));
+  if(d.dt)return run(()=>db.doc('trueques/'+d.dt).delete(),'Intercambio eliminado').then(()=>show('moderacion'));
+  if(d.cfg){const func={};$$('[data-cf]').forEach(x=>func[x.dataset.cf]=x.checked);const c={anuncio:$('#cfA').value.trim().slice(0,160),evento:$('#cfE').value,monedasX:+$('#cfM').value,xpX:+$('#cfX').value,torneo:$('#cfT').value,func,mantenimiento:$('#cfMt').checked,mantMsg:$('#cfMm').value.trim().slice(0,140)||CFG_DEF.mantMsg,por:AUTH.uid,at:Date.now()};
+   return run(()=>db.doc('config/global').set(c),'Cambios publicados para todos').then(()=>{sessionStorage.removeItem('mitopia_anuncio');applyCfg(c)})}
+  if(d.ap){const p=PET(),k=d.ap;
+   if(k==='c1k')addCoins(1000);if(k==='c10k')addCoins(10000);if(k==='lv'){ST.level+=5;ST.xp=0}if(k==='need'&&p)for(const n in p.needs)p.needs[n]=100;
+   if(k==='acc')ST.owned=[...new Set([...ST.owned,...ACC.map(a=>a.id)])];if(k==='comp')ST.comps=COMP.map(c=>c.id);if(k==='furn')ST.decor.owned=[...new Set([...ST.decor.owned,...WALLS.map(w=>w[0]),...FLOORS.map(f=>f[0]),...FURN.map(f=>f[0])])];
+   if(k==='quest')WORLDS.forEach(w=>{const s=WS(w.id);if(!s.quest){s.quest=true;s.ch=Math.max(s.ch||0,1);const a=ACC.find(x=>x.quest===w.id);if(a&&!ST.owned.includes(a.id))ST.owned.push(a.id)}});
+   if(k==='story')WORLDS.forEach(w=>{const s=WS(w.id);s.quest=true;s.ch=4});
+   if(p&&k==='bebe')p.growth=0;if(p&&k==='joven')p.growth=100;if(p&&k==='adulto')p.growth=999;
+   if(k==='mis'){const M=missions();M.d.forEach(m=>{ST.md.base[m.k]=(ST.md.base[m.k]||0)-m.n})}
+   if(k==='tut'){ST.cfg.tut=0}if(k==='fps')toggleFPS();if(k==='conf')celebrate(true);
+   if(k==='ir'){closePanel();enterWorld(+$('#apW').value);return}if(k==='jugar'){closePanel();startGame(WORLDS[+$('#apW').value].game.id);return}
+   faceKey='';save();updHUD();toast('Hecho','gold');return}
+  if(d.dx==='clr'){ERRLOG.length=0;return show('diag')}
+  if(d.dx==='img'){IMG.clear();faceKey='';return show('diag')}
+  if(d.dx==='exp')return run(async()=>{const out={exportado:new Date().toISOString(),version:APP_VER};for(const c of['jugadores','islas','records','regalos','trueques','bans','config'])out[c]=await admList(c,5000);if(AUTH.mode==='server'){try{out.cuentas=(await AUTH.db.api('GET','/admin/jugadores')).jugadores}catch(e){}}
+   await saveFile('mitopia-base-'+today()+'.json',JSON.stringify(out,null,1))},'Exportación lista')}}
+let fpsOn=false,fpsEl=null;function toggleFPS(){fpsOn=!fpsOn;if(!fpsEl){fpsEl=document.createElement('div');fpsEl.id='fps';document.body.appendChild(fpsEl)}fpsEl.classList.toggle('hide',!fpsOn);if(fpsOn){let n=0,t0=performance.now();const f=()=>{if(!fpsOn)return;n++;const t=performance.now();if(t-t0>=500){fpsEl.textContent=Math.round(n*1000/(t-t0))+' FPS';n=0;t0=t}requestAnimationFrame(f)};f()}}
+
+/* ================= Arranque: carga → cuenta → partida ================= */
 applyA11y();buildHUD();showBars('none');
-(async()=>{const set=(p,t)=>{const b=$('#ldb');if(b)b.style.width=p+'%';if(t&&$('#ldt'))$('#ldt').textContent=t};set(20);
- try{await Promise.race([document.fonts.ready,new Promise(r=>setTimeout(r,2200))])}catch(e){}set(50,'Coloreando las islas…');
+(async()=>{const set=(p,t)=>{const b=$('#ldb');if(b)b.style.width=p+'%';if(t&&$('#ldt'))$('#ldt').textContent=t};set(25);
+ try{await withTO(document.fonts.ready,2200)}catch(e){}set(55,'Coloreando las islas…');
+ await sleep(30);try{if(typeof GL!=='undefined'&&!GL.ok)buildGlobeTex()}catch(e){logErr(e)}
+ set(100,'¡Listo!');const l=$('#loader');l.classList.add('out');setTimeout(()=>l.remove(),700);
+ await authGate();
  const ims=[];if(PET())['normal','happy','blink'].forEach(e=>[0,1].forEach(f=>ims.push(petImg(PET(),e,false,f,'stand'))));
- await Promise.race([Promise.all(ims.map(im=>im.decode?im.decode().catch(()=>{}):0)),new Promise(r=>setTimeout(r,2200))]);set(80,'Inflando el globo…');
- await new Promise(r=>setTimeout(r,30));try{if(typeof GL!=='undefined'&&!GL.ok)buildGlobeTex()}catch(e){}
- set(100,'¡Listo!');showTitle();requestAnimationFrame(loop);setTimeout(()=>{const l=$('#loader');l.classList.add('out');setTimeout(()=>l.remove(),700)},300);initCloud()})();
+ await withTO(Promise.all(ims.map(im=>im.decode?im.decode().catch(()=>{}):0)),2000);
+ showTitle();requestAnimationFrame(loop);initCloud()})();
 
 </script>
 </body>
