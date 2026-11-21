@@ -1,0 +1,26 @@
+MITOPÍA · PAQUETE INSTALABLE (PWA)
+==================================
+
+Contenido
+- index.html ......... el juego completo (un solo archivo)
+- manifest.json ...... nombre, colores e íconos de la app
+- sw.js .............. permite abrirla sin internet después de la primera visita
+- icon-192.png / icon-512.png ... íconos de la app
+
+Cómo publicarla en tu dominio
+1. Sube los 5 archivos juntos a una carpeta de tu servidor, por ejemplo:
+   https://tudominio.com/mitopia/
+2. El sitio DEBE abrirse con https:// (candado). Sin https el navegador no permite instalarla.
+3. Abre la dirección en el celular o la computadora:
+   - Android / Chrome / Edge: aparece «Instalar app» en el menú, o el botón
+     «Instalar Mitopía» en Ajustes dentro del juego.
+   - iPhone / iPad (Safari): botón Compartir → «Agregar a pantalla de inicio».
+4. Listo: queda con su ícono, a pantalla completa y funciona sin conexión.
+
+Notas
+- En esta versión instalable el progreso se guarda en el dispositivo.
+  Para moverlo a otro dispositivo usa Ajustes → Exportar / Importar respaldo.
+- Las funciones en la nube (vecinos, regalos, intercambios y clasificación general)
+  funcionan dentro de la versión publicada en Claude, donde existen las cuentas.
+- Si cambias index.html, sube también sw.js con un número nuevo en CACHE
+  (por ejemplo 'mitopia-v5') para que los dispositivos tomen la versión nueva.
