@@ -1,5 +1,5 @@
 /* Mitopía · service worker: funciona sin conexión después de la primera visita */
-const CACHE='mitopia-web-7';
+const CACHE='mitopia-web-9';
 const CORE=['./','./index.html','./manifest.json','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE))));});
 self.addEventListener('message',e=>{if(e.data==='actualizar')self.skipWaiting()});
